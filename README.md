@@ -24,3 +24,11 @@ bucket changes into signals like pricing, positioning, features, CTAs, and conte
 document database, store metrics, find updates and compare 
 
 at the end, generate next steps
+
+grab logo, link to source
+partnerships ("OpenAI announced partnership with Meta"), link to source
+market & icp signals
+
+
+market opportunities (for the user's company)
+market gaps

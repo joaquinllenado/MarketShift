@@ -1,0 +1,859 @@
+================================================================================
+MARKETSHIFT AGENT FLOW TEST
+================================================================================
+
+Test query: 'AI writing assistants'
+
+--------------------------------------------------------------------------------
+STEP 1: SUB-AGENT 1 — Data Gathering
+(web_search_tool + product_hunt_tool + news_tool in parallel)
+--------------------------------------------------------------------------------
+{
+  "query": "AI writing assistants",
+  "web": [
+    {
+      "title": "Compose AI",
+      "url": "https://compose.ai/",
+      "highlights": [
+        "y/software, ai writing assistants, compose web, ai writing assistant, personalized phrases,"
+      ]
+    },
+    {
+      "title": "HIX.AI",
+      "url": "https://hix.ai/",
+      "highlights": [
+        " text generator \u2013 AI Writer, an AI chatbot \u2013 HIX Chat, a better alternative to Notion AI \u2013 HIX Editor, an all-in-one Chrome extension \u2013 HIX.AI Chrome Extension, a Long-Form Blog Generator and an Email Generator.  ...   - Top Countries: Japan: 10%, United States: 7%, India: 6%, Russia: 6%, Brazil: 4% marketing, ai writing assistants, hix.ai, ai writing assistant, ai writing"
+      ]
+    },
+    {
+      "title": "Squibler AI",
+      "url": "https://squibler.io/",
+      "highlights": [
+        " ai writing assistants, squibler, ai writing assistant, ai writing, ai"
+      ]
+    },
+    {
+      "title": "Article Forge",
+      "url": "https://articleforge.com/",
+      "highlights": [
+        " forge, ai writing assistant, content creation, natural language generation (nlg), ai-powered, ai content generator, seo-friendly articles, single click, deep learning, content creators, generative ai, software  ...   - [2025-04-16] EIN Presswire: AI Writing Assistant Software Market"
+      ]
+    },
+    {
+      "title": "Sudowrite",
+      "url": "https://sudowrite.com/",
+      "highlights": [
+        " ai writing assistants, sudowrite, ai writing assistant, artificial intelligence"
+      ]
+    }
+  ],
+  "product_hunt": [
+    {
+      "title": "The best writing assistants in 2026",
+      "url": "https://www.producthunt.com/categories/writing-assistants",
+      "highlights": [
+        " writing assistants are smart tools that help people write better. They use advanced technology to understand how humans write and offer suggestions and corrections in real-time. They can help with organizing thoughts"
+      ]
+    },
+    {
+      "title": "Jasper: The Best AI Writing Assistant",
+      "url": "https://www.producthunt.com/products/jasper-6",
+      "highlights": [
+        " in The Best AI Writing Assistant \u2022 9 reviews \u2022 291 followers Visit website Overview"
+      ]
+    },
+    {
+      "title": "Free AI Writing & Generators Tools",
+      "url": "https://www.producthunt.com/products/free-ai-writing-generators-tools",
+      "highlights": [
+        " Sign in Online tools designed to assist in writing tasks. \u2022 0 reviews \u2022"
+      ]
+    },
+    {
+      "title": "Olovka: Advanced AI writing & learning assistant for students",
+      "url": "https://www.producthunt.com/products/olovka",
+      "highlights": [
+        " best AI Essay Writer designed for students. Write essays 10x faster, convert"
+      ]
+    },
+    {
+      "title": "jasper Product Information and Latest Updates (2025) | Product Hunt",
+      "url": "https://www.producthunt.com/products/jasper-7",
+      "highlights": [
+        " Artificial intelligence makes it fast & easy to create content for your blog, social media"
+      ]
+    }
+  ],
+  "news": [
+    {
+      "title": "Grammarly: Free AI Writing Assistance",
+      "url": "https://www.grammarly.com/",
+      "highlights": [
+        "Trusted by 50,000 organizations and 40 million people\n\n## Better writing,better results  ...    - Generate text with 100 AI prompts\n- See your writing tone\n- Write without mistakes\n\nMost popular  ...    Work smarter with the AI writing leader"
+      ]
+    },
+    {
+      "title": "DeepL Write: AI-powered writing companion",
+      "url": "https://www.deepl.com/en/write",
+      "highlights": [
+        " Write: AI-powered writing companion\n\nTranslate text100+ languages  ...    #### Write with confidence, powered by AI - Choose a writing"
+      ]
+    },
+    {
+      "title": "Free AI-Powered Writing Assistant",
+      "url": "https://englishedit.ai/",
+      "highlights": [
+        " EnglishEditAI"
+      ]
+    },
+    {
+      "title": "HyperWrite | AI Writing Assistant",
+      "url": "https://www.hyperwriteai.com/",
+      "highlights": [
+        "Hundreds of powerful AI writing and research tools to transform your work\n\n\ud83e\ude84\n\n### Flexible AutoWrite  ...    Access the world's best AI writer"
+      ]
+    },
+    {
+      "title": "Rytr: Free AI Writer, Content Generator & Writing Assistant",
+      "url": "https://rytr.me/",
+      "highlights": [
+        "TextUse AI to finish sentences/paragraphs, enhancing writing flow and quality.]  ...    ## AI Content that sounds like you, not a robot. Rytr analyzes a"
+      ]
+    }
+  ]
+}
+
+
+--------------------------------------------------------------------------------
+STEP 2: SUB-AGENT 2 — Aggregation + Persistence
+(deduplicates by URL, appends to data/results.json)
+--------------------------------------------------------------------------------
+{
+  "query": "AI writing assistants",
+  "web": [
+    {
+      "title": "Compose AI",
+      "url": "https://compose.ai/",
+      "highlights": [
+        "y/software, ai writing assistants, compose web, ai writing assistant, personalized phrases,"
+      ]
+    },
+    {
+      "title": "HIX.AI",
+      "url": "https://hix.ai/",
+      "highlights": [
+        " text generator \u2013 AI Writer, an AI chatbot \u2013 HIX Chat, a better alternative to Notion AI \u2013 HIX Editor, an all-in-one Chrome extension \u2013 HIX.AI Chrome Extension, a Long-Form Blog Generator and an Email Generator.  ...   - Top Countries: Japan: 10%, United States: 7%, India: 6%, Russia: 6%, Brazil: 4% marketing, ai writing assistants, hix.ai, ai writing assistant, ai writing"
+      ]
+    },
+    {
+      "title": "Squibler AI",
+      "url": "https://squibler.io/",
+      "highlights": [
+        " ai writing assistants, squibler, ai writing assistant, ai writing, ai"
+      ]
+    },
+    {
+      "title": "Article Forge",
+      "url": "https://articleforge.com/",
+      "highlights": [
+        " forge, ai writing assistant, content creation, natural language generation (nlg), ai-powered, ai content generator, seo-friendly articles, single click, deep learning, content creators, generative ai, software  ...   - [2025-04-16] EIN Presswire: AI Writing Assistant Software Market"
+      ]
+    },
+    {
+      "title": "Sudowrite",
+      "url": "https://sudowrite.com/",
+      "highlights": [
+        " ai writing assistants, sudowrite, ai writing assistant, artificial intelligence"
+      ]
+    }
+  ],
+  "product_hunt": [
+    {
+      "title": "The best writing assistants in 2026",
+      "url": "https://www.producthunt.com/categories/writing-assistants",
+      "highlights": [
+        " writing assistants are smart tools that help people write better. They use advanced technology to understand how humans write and offer suggestions and corrections in real-time. They can help with organizing thoughts"
+      ]
+    },
+    {
+      "title": "Jasper: The Best AI Writing Assistant",
+      "url": "https://www.producthunt.com/products/jasper-6",
+      "highlights": [
+        " in The Best AI Writing Assistant \u2022 9 reviews \u2022 291 followers Visit website Overview"
+      ]
+    },
+    {
+      "title": "Free AI Writing & Generators Tools",
+      "url": "https://www.producthunt.com/products/free-ai-writing-generators-tools",
+      "highlights": [
+        " Sign in Online tools designed to assist in writing tasks. \u2022 0 reviews \u2022"
+      ]
+    },
+    {
+      "title": "Olovka: Advanced AI writing & learning assistant for students",
+      "url": "https://www.producthunt.com/products/olovka",
+      "highlights": [
+        " best AI Essay Writer designed for students. Write essays 10x faster, convert"
+      ]
+    },
+    {
+      "title": "jasper Product Information and Latest Updates (2025) | Product Hunt",
+      "url": "https://www.producthunt.com/products/jasper-7",
+      "highlights": [
+        " Artificial intelligence makes it fast & easy to create content for your blog, social media"
+      ]
+    }
+  ],
+  "news": [
+    {
+      "title": "Grammarly: Free AI Writing Assistance",
+      "url": "https://www.grammarly.com/",
+      "highlights": [
+        "Trusted by 50,000 organizations and 40 million people\n\n## Better writing,better results  ...    - Generate text with 100 AI prompts\n- See your writing tone\n- Write without mistakes\n\nMost popular  ...    Work smarter with the AI writing leader"
+      ]
+    },
+    {
+      "title": "DeepL Write: AI-powered writing companion",
+      "url": "https://www.deepl.com/en/write",
+      "highlights": [
+        " Write: AI-powered writing companion\n\nTranslate text100+ languages  ...    #### Write with confidence, powered by AI - Choose a writing"
+      ]
+    },
+    {
+      "title": "Free AI-Powered Writing Assistant",
+      "url": "https://englishedit.ai/",
+      "highlights": [
+        " EnglishEditAI"
+      ]
+    },
+    {
+      "title": "HyperWrite | AI Writing Assistant",
+      "url": "https://www.hyperwriteai.com/",
+      "highlights": [
+        "Hundreds of powerful AI writing and research tools to transform your work\n\n\ud83e\ude84\n\n### Flexible AutoWrite  ...    Access the world's best AI writer"
+      ]
+    },
+    {
+      "title": "Rytr: Free AI Writer, Content Generator & Writing Assistant",
+      "url": "https://rytr.me/",
+      "highlights": [
+        "TextUse AI to finish sentences/paragraphs, enhancing writing flow and quality.]  ...    ## AI Content that sounds like you, not a robot. Rytr analyzes a"
+      ]
+    }
+  ],
+  "aggregated": [
+    {
+      "title": "Compose AI",
+      "url": "https://compose.ai/",
+      "highlights": [
+        "y/software, ai writing assistants, compose web, ai writing assistant, personalized phrases,"
+      ],
+      "source": "web"
+    },
+    {
+      "title": "HIX.AI",
+      "url": "https://hix.ai/",
+      "highlights": [
+        " text generator \u2013 AI Writer, an AI chatbot \u2013 HIX Chat, a better alternative to Notion AI \u2013 HIX Editor, an all-in-one Chrome extension \u2013 HIX.AI Chrome Extension, a Long-Form Blog Generator and an Email Generator.  ...   - Top Countries: Japan: 10%, United States: 7%, India: 6%, Russia: 6%, Brazil: 4% marketing, ai writing assistants, hix.ai, ai writing assistant, ai writing"
+      ],
+      "source": "web"
+    },
+    {
+      "title": "Squibler AI",
+      "url": "https://squibler.io/",
+      "highlights": [
+        " ai writing assistants, squibler, ai writing assistant, ai writing, ai"
+      ],
+      "source": "web"
+    },
+    {
+      "title": "Article Forge",
+      "url": "https://articleforge.com/",
+      "highlights": [
+        " forge, ai writing assistant, content creation, natural language generation (nlg), ai-powered, ai content generator, seo-friendly articles, single click, deep learning, content creators, generative ai, software  ...   - [2025-04-16] EIN Presswire: AI Writing Assistant Software Market"
+      ],
+      "source": "web"
+    },
+    {
+      "title": "Sudowrite",
+      "url": "https://sudowrite.com/",
+      "highlights": [
+        " ai writing assistants, sudowrite, ai writing assistant, artificial intelligence"
+      ],
+      "source": "web"
+    },
+    {
+      "title": "The best writing assistants in 2026",
+      "url": "https://www.producthunt.com/categories/writing-assistants",
+      "highlights": [
+        " writing assistants are smart tools that help people write better. They use advanced technology to understand how humans write and offer suggestions and corrections in real-time. They can help with organizing thoughts"
+      ],
+      "source": "product_hunt"
+    },
+    {
+      "title": "Jasper: The Best AI Writing Assistant",
+      "url": "https://www.producthunt.com/products/jasper-6",
+      "highlights": [
+        " in The Best AI Writing Assistant \u2022 9 reviews \u2022 291 followers Visit website Overview"
+      ],
+      "source": "product_hunt"
+    },
+    {
+      "title": "Free AI Writing & Generators Tools",
+      "url": "https://www.producthunt.com/products/free-ai-writing-generators-tools",
+      "highlights": [
+        " Sign in Online tools designed to assist in writing tasks. \u2022 0 reviews \u2022"
+      ],
+      "source": "product_hunt"
+    },
+    {
+      "title": "Olovka: Advanced AI writing & learning assistant for students",
+      "url": "https://www.producthunt.com/products/olovka",
+      "highlights": [
+        " best AI Essay Writer designed for students. Write essays 10x faster, convert"
+      ],
+      "source": "product_hunt"
+    },
+    {
+      "title": "jasper Product Information and Latest Updates (2025) | Product Hunt",
+      "url": "https://www.producthunt.com/products/jasper-7",
+      "highlights": [
+        " Artificial intelligence makes it fast & easy to create content for your blog, social media"
+      ],
+      "source": "product_hunt"
+    },
+    {
+      "title": "Grammarly: Free AI Writing Assistance",
+      "url": "https://www.grammarly.com/",
+      "highlights": [
+        "Trusted by 50,000 organizations and 40 million people\n\n## Better writing,better results  ...    - Generate text with 100 AI prompts\n- See your writing tone\n- Write without mistakes\n\nMost popular  ...    Work smarter with the AI writing leader"
+      ],
+      "source": "news"
+    },
+    {
+      "title": "DeepL Write: AI-powered writing companion",
+      "url": "https://www.deepl.com/en/write",
+      "highlights": [
+        " Write: AI-powered writing companion\n\nTranslate text100+ languages  ...    #### Write with confidence, powered by AI - Choose a writing"
+      ],
+      "source": "news"
+    },
+    {
+      "title": "Free AI-Powered Writing Assistant",
+      "url": "https://englishedit.ai/",
+      "highlights": [
+        " EnglishEditAI"
+      ],
+      "source": "news"
+    },
+    {
+      "title": "HyperWrite | AI Writing Assistant",
+      "url": "https://www.hyperwriteai.com/",
+      "highlights": [
+        "Hundreds of powerful AI writing and research tools to transform your work\n\n\ud83e\ude84\n\n### Flexible AutoWrite  ...    Access the world's best AI writer"
+      ],
+      "source": "news"
+    },
+    {
+      "title": "Rytr: Free AI Writer, Content Generator & Writing Assistant",
+      "url": "https://rytr.me/",
+      "highlights": [
+        "TextUse AI to finish sentences/paragraphs, enhancing writing flow and quality.]  ...    ## AI Content that sounds like you, not a robot. Rytr analyzes a"
+      ],
+      "source": "news"
+    }
+  ],
+  "persisted_at": "2026-03-07T21:21:26.892245+00:00"
+}
+
+
+--------------------------------------------------------------------------------
+STEP 3: SUB-AGENT 3 — Frontend Delivery
+(formats response, adds total_results)
+--------------------------------------------------------------------------------
+{
+  "query": "AI writing assistants",
+  "web": [
+    {
+      "title": "Compose AI",
+      "url": "https://compose.ai/",
+      "highlights": [
+        "y/software, ai writing assistants, compose web, ai writing assistant, personalized phrases,"
+      ]
+    },
+    {
+      "title": "HIX.AI",
+      "url": "https://hix.ai/",
+      "highlights": [
+        " text generator \u2013 AI Writer, an AI chatbot \u2013 HIX Chat, a better alternative to Notion AI \u2013 HIX Editor, an all-in-one Chrome extension \u2013 HIX.AI Chrome Extension, a Long-Form Blog Generator and an Email Generator.  ...   - Top Countries: Japan: 10%, United States: 7%, India: 6%, Russia: 6%, Brazil: 4% marketing, ai writing assistants, hix.ai, ai writing assistant, ai writing"
+      ]
+    },
+    {
+      "title": "Squibler AI",
+      "url": "https://squibler.io/",
+      "highlights": [
+        " ai writing assistants, squibler, ai writing assistant, ai writing, ai"
+      ]
+    },
+    {
+      "title": "Article Forge",
+      "url": "https://articleforge.com/",
+      "highlights": [
+        " forge, ai writing assistant, content creation, natural language generation (nlg), ai-powered, ai content generator, seo-friendly articles, single click, deep learning, content creators, generative ai, software  ...   - [2025-04-16] EIN Presswire: AI Writing Assistant Software Market"
+      ]
+    },
+    {
+      "title": "Sudowrite",
+      "url": "https://sudowrite.com/",
+      "highlights": [
+        " ai writing assistants, sudowrite, ai writing assistant, artificial intelligence"
+      ]
+    }
+  ],
+  "product_hunt": [
+    {
+      "title": "The best writing assistants in 2026",
+      "url": "https://www.producthunt.com/categories/writing-assistants",
+      "highlights": [
+        " writing assistants are smart tools that help people write better. They use advanced technology to understand how humans write and offer suggestions and corrections in real-time. They can help with organizing thoughts"
+      ]
+    },
+    {
+      "title": "Jasper: The Best AI Writing Assistant",
+      "url": "https://www.producthunt.com/products/jasper-6",
+      "highlights": [
+        " in The Best AI Writing Assistant \u2022 9 reviews \u2022 291 followers Visit website Overview"
+      ]
+    },
+    {
+      "title": "Free AI Writing & Generators Tools",
+      "url": "https://www.producthunt.com/products/free-ai-writing-generators-tools",
+      "highlights": [
+        " Sign in Online tools designed to assist in writing tasks. \u2022 0 reviews \u2022"
+      ]
+    },
+    {
+      "title": "Olovka: Advanced AI writing & learning assistant for students",
+      "url": "https://www.producthunt.com/products/olovka",
+      "highlights": [
+        " best AI Essay Writer designed for students. Write essays 10x faster, convert"
+      ]
+    },
+    {
+      "title": "jasper Product Information and Latest Updates (2025) | Product Hunt",
+      "url": "https://www.producthunt.com/products/jasper-7",
+      "highlights": [
+        " Artificial intelligence makes it fast & easy to create content for your blog, social media"
+      ]
+    }
+  ],
+  "news": [
+    {
+      "title": "Grammarly: Free AI Writing Assistance",
+      "url": "https://www.grammarly.com/",
+      "highlights": [
+        "Trusted by 50,000 organizations and 40 million people\n\n## Better writing,better results  ...    - Generate text with 100 AI prompts\n- See your writing tone\n- Write without mistakes\n\nMost popular  ...    Work smarter with the AI writing leader"
+      ]
+    },
+    {
+      "title": "DeepL Write: AI-powered writing companion",
+      "url": "https://www.deepl.com/en/write",
+      "highlights": [
+        " Write: AI-powered writing companion\n\nTranslate text100+ languages  ...    #### Write with confidence, powered by AI - Choose a writing"
+      ]
+    },
+    {
+      "title": "Free AI-Powered Writing Assistant",
+      "url": "https://englishedit.ai/",
+      "highlights": [
+        " EnglishEditAI"
+      ]
+    },
+    {
+      "title": "HyperWrite | AI Writing Assistant",
+      "url": "https://www.hyperwriteai.com/",
+      "highlights": [
+        "Hundreds of powerful AI writing and research tools to transform your work\n\n\ud83e\ude84\n\n### Flexible AutoWrite  ...    Access the world's best AI writer"
+      ]
+    },
+    {
+      "title": "Rytr: Free AI Writer, Content Generator & Writing Assistant",
+      "url": "https://rytr.me/",
+      "highlights": [
+        "TextUse AI to finish sentences/paragraphs, enhancing writing flow and quality.]  ...    ## AI Content that sounds like you, not a robot. Rytr analyzes a"
+      ]
+    }
+  ],
+  "aggregated": [
+    {
+      "title": "Compose AI",
+      "url": "https://compose.ai/",
+      "highlights": [
+        "y/software, ai writing assistants, compose web, ai writing assistant, personalized phrases,"
+      ],
+      "source": "web"
+    },
+    {
+      "title": "HIX.AI",
+      "url": "https://hix.ai/",
+      "highlights": [
+        " text generator \u2013 AI Writer, an AI chatbot \u2013 HIX Chat, a better alternative to Notion AI \u2013 HIX Editor, an all-in-one Chrome extension \u2013 HIX.AI Chrome Extension, a Long-Form Blog Generator and an Email Generator.  ...   - Top Countries: Japan: 10%, United States: 7%, India: 6%, Russia: 6%, Brazil: 4% marketing, ai writing assistants, hix.ai, ai writing assistant, ai writing"
+      ],
+      "source": "web"
+    },
+    {
+      "title": "Squibler AI",
+      "url": "https://squibler.io/",
+      "highlights": [
+        " ai writing assistants, squibler, ai writing assistant, ai writing, ai"
+      ],
+      "source": "web"
+    },
+    {
+      "title": "Article Forge",
+      "url": "https://articleforge.com/",
+      "highlights": [
+        " forge, ai writing assistant, content creation, natural language generation (nlg), ai-powered, ai content generator, seo-friendly articles, single click, deep learning, content creators, generative ai, software  ...   - [2025-04-16] EIN Presswire: AI Writing Assistant Software Market"
+      ],
+      "source": "web"
+    },
+    {
+      "title": "Sudowrite",
+      "url": "https://sudowrite.com/",
+      "highlights": [
+        " ai writing assistants, sudowrite, ai writing assistant, artificial intelligence"
+      ],
+      "source": "web"
+    },
+    {
+      "title": "The best writing assistants in 2026",
+      "url": "https://www.producthunt.com/categories/writing-assistants",
+      "highlights": [
+        " writing assistants are smart tools that help people write better. They use advanced technology to understand how humans write and offer suggestions and corrections in real-time. They can help with organizing thoughts"
+      ],
+      "source": "product_hunt"
+    },
+    {
+      "title": "Jasper: The Best AI Writing Assistant",
+      "url": "https://www.producthunt.com/products/jasper-6",
+      "highlights": [
+        " in The Best AI Writing Assistant \u2022 9 reviews \u2022 291 followers Visit website Overview"
+      ],
+      "source": "product_hunt"
+    },
+    {
+      "title": "Free AI Writing & Generators Tools",
+      "url": "https://www.producthunt.com/products/free-ai-writing-generators-tools",
+      "highlights": [
+        " Sign in Online tools designed to assist in writing tasks. \u2022 0 reviews \u2022"
+      ],
+      "source": "product_hunt"
+    },
+    {
+      "title": "Olovka: Advanced AI writing & learning assistant for students",
+      "url": "https://www.producthunt.com/products/olovka",
+      "highlights": [
+        " best AI Essay Writer designed for students. Write essays 10x faster, convert"
+      ],
+      "source": "product_hunt"
+    },
+    {
+      "title": "jasper Product Information and Latest Updates (2025) | Product Hunt",
+      "url": "https://www.producthunt.com/products/jasper-7",
+      "highlights": [
+        " Artificial intelligence makes it fast & easy to create content for your blog, social media"
+      ],
+      "source": "product_hunt"
+    },
+    {
+      "title": "Grammarly: Free AI Writing Assistance",
+      "url": "https://www.grammarly.com/",
+      "highlights": [
+        "Trusted by 50,000 organizations and 40 million people\n\n## Better writing,better results  ...    - Generate text with 100 AI prompts\n- See your writing tone\n- Write without mistakes\n\nMost popular  ...    Work smarter with the AI writing leader"
+      ],
+      "source": "news"
+    },
+    {
+      "title": "DeepL Write: AI-powered writing companion",
+      "url": "https://www.deepl.com/en/write",
+      "highlights": [
+        " Write: AI-powered writing companion\n\nTranslate text100+ languages  ...    #### Write with confidence, powered by AI - Choose a writing"
+      ],
+      "source": "news"
+    },
+    {
+      "title": "Free AI-Powered Writing Assistant",
+      "url": "https://englishedit.ai/",
+      "highlights": [
+        " EnglishEditAI"
+      ],
+      "source": "news"
+    },
+    {
+      "title": "HyperWrite | AI Writing Assistant",
+      "url": "https://www.hyperwriteai.com/",
+      "highlights": [
+        "Hundreds of powerful AI writing and research tools to transform your work\n\n\ud83e\ude84\n\n### Flexible AutoWrite  ...    Access the world's best AI writer"
+      ],
+      "source": "news"
+    },
+    {
+      "title": "Rytr: Free AI Writer, Content Generator & Writing Assistant",
+      "url": "https://rytr.me/",
+      "highlights": [
+        "TextUse AI to finish sentences/paragraphs, enhancing writing flow and quality.]  ...    ## AI Content that sounds like you, not a robot. Rytr analyzes a"
+      ],
+      "source": "news"
+    }
+  ],
+  "persisted_at": "2026-03-07T21:21:26.892245+00:00",
+  "total_results": 15
+}
+
+
+--------------------------------------------------------------------------------
+FULL PIPELINE — Orchestrator (sub_1 | sub_2 | sub_3)
+--------------------------------------------------------------------------------
+{
+  "query": "AI writing assistants",
+  "web": [
+    {
+      "title": "Compose AI",
+      "url": "https://compose.ai/",
+      "highlights": [
+        "y/software, ai writing assistants, compose web, ai writing assistant, personalized phrases,"
+      ]
+    },
+    {
+      "title": "HIX.AI",
+      "url": "https://hix.ai/",
+      "highlights": [
+        " text generator \u2013 AI Writer, an AI chatbot \u2013 HIX Chat, a better alternative to Notion AI \u2013 HIX Editor, an all-in-one Chrome extension \u2013 HIX.AI Chrome Extension, a Long-Form Blog Generator and an Email Generator.  ...   - Top Countries: Japan: 10%, United States: 7%, India: 6%, Russia: 6%, Brazil: 4% marketing, ai writing assistants, hix.ai, ai writing assistant, ai writing"
+      ]
+    },
+    {
+      "title": "Squibler AI",
+      "url": "https://squibler.io/",
+      "highlights": [
+        " ai writing assistants, squibler, ai writing assistant, ai writing, ai"
+      ]
+    },
+    {
+      "title": "Article Forge",
+      "url": "https://articleforge.com/",
+      "highlights": [
+        " forge, ai writing assistant, content creation, natural language generation (nlg), ai-powered, ai content generator, seo-friendly articles, single click, deep learning, content creators, generative ai, software  ...   - [2025-04-16] EIN Presswire: AI Writing Assistant Software Market"
+      ]
+    },
+    {
+      "title": "Sudowrite",
+      "url": "https://sudowrite.com/",
+      "highlights": [
+        " ai writing assistants, sudowrite, ai writing assistant, artificial intelligence"
+      ]
+    }
+  ],
+  "product_hunt": [
+    {
+      "title": "The best writing assistants in 2026",
+      "url": "https://www.producthunt.com/categories/writing-assistants",
+      "highlights": [
+        " writing assistants are smart tools that help people write better. They use advanced technology to understand how humans write and offer suggestions and corrections in real-time. They can help with organizing thoughts"
+      ]
+    },
+    {
+      "title": "Jasper: The Best AI Writing Assistant",
+      "url": "https://www.producthunt.com/products/jasper-6",
+      "highlights": [
+        " in The Best AI Writing Assistant \u2022 9 reviews \u2022 291 followers Visit website Overview"
+      ]
+    },
+    {
+      "title": "Free AI Writing & Generators Tools",
+      "url": "https://www.producthunt.com/products/free-ai-writing-generators-tools",
+      "highlights": [
+        " Sign in Online tools designed to assist in writing tasks. \u2022 0 reviews \u2022"
+      ]
+    },
+    {
+      "title": "Olovka: Advanced AI writing & learning assistant for students",
+      "url": "https://www.producthunt.com/products/olovka",
+      "highlights": [
+        " best AI Essay Writer designed for students. Write essays 10x faster, convert"
+      ]
+    },
+    {
+      "title": "jasper Product Information and Latest Updates (2025) | Product Hunt",
+      "url": "https://www.producthunt.com/products/jasper-7",
+      "highlights": [
+        " Artificial intelligence makes it fast & easy to create content for your blog, social media"
+      ]
+    }
+  ],
+  "news": [
+    {
+      "title": "Grammarly: Free AI Writing Assistance",
+      "url": "https://www.grammarly.com/",
+      "highlights": [
+        "Trusted by 50,000 organizations and 40 million people\n\n## Better writing,better results  ...    - Generate text with 100 AI prompts\n- See your writing tone\n- Write without mistakes\n\nMost popular  ...    Work smarter with the AI writing leader"
+      ]
+    },
+    {
+      "title": "DeepL Write: AI-powered writing companion",
+      "url": "https://www.deepl.com/en/write",
+      "highlights": [
+        " Write: AI-powered writing companion\n\nTranslate text100+ languages  ...    #### Write with confidence, powered by AI - Choose a writing"
+      ]
+    },
+    {
+      "title": "Free AI-Powered Writing Assistant",
+      "url": "https://englishedit.ai/",
+      "highlights": [
+        " EnglishEditAI"
+      ]
+    },
+    {
+      "title": "HyperWrite | AI Writing Assistant",
+      "url": "https://www.hyperwriteai.com/",
+      "highlights": [
+        "Hundreds of powerful AI writing and research tools to transform your work\n\n\ud83e\ude84\n\n### Flexible AutoWrite  ...    Access the world's best AI writer"
+      ]
+    },
+    {
+      "title": "Rytr: Free AI Writer, Content Generator & Writing Assistant",
+      "url": "https://rytr.me/",
+      "highlights": [
+        "TextUse AI to finish sentences/paragraphs, enhancing writing flow and quality.]  ...    ## AI Content that sounds like you, not a robot. Rytr analyzes a"
+      ]
+    }
+  ],
+  "aggregated": [
+    {
+      "title": "Compose AI",
+      "url": "https://compose.ai/",
+      "highlights": [
+        "y/software, ai writing assistants, compose web, ai writing assistant, personalized phrases,"
+      ],
+      "source": "web"
+    },
+    {
+      "title": "HIX.AI",
+      "url": "https://hix.ai/",
+      "highlights": [
+        " text generator \u2013 AI Writer, an AI chatbot \u2013 HIX Chat, a better alternative to Notion AI \u2013 HIX Editor, an all-in-one Chrome extension \u2013 HIX.AI Chrome Extension, a Long-Form Blog Generator and an Email Generator.  ...   - Top Countries: Japan: 10%, United States: 7%, India: 6%, Russia: 6%, Brazil: 4% marketing, ai writing assistants, hix.ai, ai writing assistant, ai writing"
+      ],
+      "source": "web"
+    },
+    {
+      "title": "Squibler AI",
+      "url": "https://squibler.io/",
+      "highlights": [
+        " ai writing assistants, squibler, ai writing assistant, ai writing, ai"
+      ],
+      "source": "web"
+    },
+    {
+      "title": "Article Forge",
+      "url": "https://articleforge.com/",
+      "highlights": [
+        " forge, ai writing assistant, content creation, natural language generation (nlg), ai-powered, ai content generator, seo-friendly articles, single click, deep learning, content creators, generative ai, software  ...   - [2025-04-16] EIN Presswire: AI Writing Assistant Software Market"
+      ],
+      "source": "web"
+    },
+    {
+      "title": "Sudowrite",
+      "url": "https://sudowrite.com/",
+      "highlights": [
+        " ai writing assistants, sudowrite, ai writing assistant, artificial intelligence"
+      ],
+      "source": "web"
+    },
+    {
+      "title": "The best writing assistants in 2026",
+      "url": "https://www.producthunt.com/categories/writing-assistants",
+      "highlights": [
+        " writing assistants are smart tools that help people write better. They use advanced technology to understand how humans write and offer suggestions and corrections in real-time. They can help with organizing thoughts"
+      ],
+      "source": "product_hunt"
+    },
+    {
+      "title": "Jasper: The Best AI Writing Assistant",
+      "url": "https://www.producthunt.com/products/jasper-6",
+      "highlights": [
+        " in The Best AI Writing Assistant \u2022 9 reviews \u2022 291 followers Visit website Overview"
+      ],
+      "source": "product_hunt"
+    },
+    {
+      "title": "Free AI Writing & Generators Tools",
+      "url": "https://www.producthunt.com/products/free-ai-writing-generators-tools",
+      "highlights": [
+        " Sign in Online tools designed to assist in writing tasks. \u2022 0 reviews \u2022"
+      ],
+      "source": "product_hunt"
+    },
+    {
+      "title": "Olovka: Advanced AI writing & learning assistant for students",
+      "url": "https://www.producthunt.com/products/olovka",
+      "highlights": [
+        " best AI Essay Writer designed for students. Write essays 10x faster, convert"
+      ],
+      "source": "product_hunt"
+    },
+    {
+      "title": "jasper Product Information and Latest Updates (2025) | Product Hunt",
+      "url": "https://www.producthunt.com/products/jasper-7",
+      "highlights": [
+        " Artificial intelligence makes it fast & easy to create content for your blog, social media"
+      ],
+      "source": "product_hunt"
+    },
+    {
+      "title": "Grammarly: Free AI Writing Assistance",
+      "url": "https://www.grammarly.com/",
+      "highlights": [
+        "Trusted by 50,000 organizations and 40 million people\n\n## Better writing,better results  ...    - Generate text with 100 AI prompts\n- See your writing tone\n- Write without mistakes\n\nMost popular  ...    Work smarter with the AI writing leader"
+      ],
+      "source": "news"
+    },
+    {
+      "title": "DeepL Write: AI-powered writing companion",
+      "url": "https://www.deepl.com/en/write",
+      "highlights": [
+        " Write: AI-powered writing companion\n\nTranslate text100+ languages  ...    #### Write with confidence, powered by AI - Choose a writing"
+      ],
+      "source": "news"
+    },
+    {
+      "title": "Free AI-Powered Writing Assistant",
+      "url": "https://englishedit.ai/",
+      "highlights": [
+        " EnglishEditAI"
+      ],
+      "source": "news"
+    },
+    {
+      "title": "HyperWrite | AI Writing Assistant",
+      "url": "https://www.hyperwriteai.com/",
+      "highlights": [
+        "Hundreds of powerful AI writing and research tools to transform your work\n\n\ud83e\ude84\n\n### Flexible AutoWrite  ...    Access the world's best AI writer"
+      ],
+      "source": "news"
+    },
+    {
+      "title": "Rytr: Free AI Writer, Content Generator & Writing Assistant",
+      "url": "https://rytr.me/",
+      "highlights": [
+        "TextUse AI to finish sentences/paragraphs, enhancing writing flow and quality.]  ...    ## AI Content that sounds like you, not a robot. Rytr analyzes a"
+      ],
+      "source": "news"
+    }
+  ],
+  "persisted_at": "2026-03-07T21:21:27.309588+00:00",
+  "total_results": 15
+}
+
+
+================================================================================
+END OF TEST
+================================================================================

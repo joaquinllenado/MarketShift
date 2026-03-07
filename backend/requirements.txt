@@ -3,3 +3,6 @@ uvicorn
 prefect
 exa-py
 python-dotenv
+langchain
+langchain-core
+langchain-openai

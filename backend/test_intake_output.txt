@@ -1,0 +1,399 @@
+================================================================================
+MARKETSHIFT INTAKE AGENT + PIPELINE FLOW TEST
+================================================================================
+
+################################################################################
+TEST 1 / 4
+################################################################################
+
+RAW USER INPUT:
+  'alcemi.ai, US SaaS market. Competitors: jasper.ai, copy.ai, writesonic.com. Focus on pricing'
+
+--------------------------------------------------------------------------------
+STEP A: INTAKE AGENT — Query Parsing (DeepSeek R1)
+--------------------------------------------------------------------------------
+Optimised query: 'alcemi.ai pricing vs jasper.ai, copy.ai, writesonic.com in US SaaS market'
+
+--------------------------------------------------------------------------------
+STEP B: FULL PIPELINE (intake → gather → aggregate → format)
+--------------------------------------------------------------------------------
+{
+  "query": "alcemi.ai vs jasper.ai vs copy.ai vs writesonic.com pricing comparison US SaaS market",
+  "product_announcements": [],
+  "funding": [
+    {
+      "company": "Jasper",
+      "abbreviation": "JA",
+      "title": "raised over $125 million in funding",
+      "amount": "$125M",
+      "url": "https://www.conbersa.ai/learn/ai-writing-tools-comparison",
+      "logo": "https://www.google.com/s2/favicons?domain=www.conbersa.ai&sz=64"
+    }
+  ],
+  "partnerships": [],
+  "market_signals": [],
+  "market_opportunities": [
+    "Growing demand for budget-friendly AI writing tools among SMBs and startups, evidenced by freemium models gaining traction",
+    "Expansion potential in multilingual content creation, with tools like Writesonic supporting 24 languages attracting global users",
+    "Opportunity to integrate AI writing assistants into vertical SaaS ecosystems (e.g., real estate, e-commerce) for specialized content generation"
+  ],
+  "competitive_risks": [
+    "Price sensitivity driving users to free alternatives (e.g., ScripAI) threatens premium players like Jasper",
+    "Sudden pricing changes without transparent communication eroding customer trust, as reported with Copy.ai",
+    "Feature parity erosion as competitors rapidly expand template libraries (100+ templates in Writesonic vs. 50+ in Jasper)"
+  ],
+  "action_steps": [
+    {
+      "step": 1,
+      "title": "Conduct granular pricing analysis to identify optimal entry points for SMBs without cannibalizing enterprise revenue"
+    },
+    {
+      "step": 2,
+      "title": "Develop transparent pricing change protocols to prevent customer backlash and churn"
+    },
+    {
+      "step": 3,
+      "title": "Accelerate localization features for non-English markets to capture international growth"
+    },
+    {
+      "step": 4,
+      "title": "Create industry-specific content modules targeting high-value verticals like SaaS marketing and e-commerce"
+    },
+    {
+      "step": 5,
+      "title": "Establish partner integrations with CRM/marketing automation platforms to enhance workflow stickiness"
+    }
+  ],
+  "persisted_at": "2026-03-07T22:33:52.383747+00:00"
+}
+
+
+################################################################################
+TEST 2 / 4
+################################################################################
+
+RAW USER INPUT:
+  'I run alcemi.ai in the US - track competitor1.com, competitor2.com. Focus on pricing'
+
+--------------------------------------------------------------------------------
+STEP A: INTAKE AGENT — Query Parsing (DeepSeek R1)
+--------------------------------------------------------------------------------
+Optimised query: 'alcemi.ai vs competitor1.com vs competitor2.com pricing comparison US market'
+
+--------------------------------------------------------------------------------
+STEP B: FULL PIPELINE (intake → gather → aggregate → format)
+--------------------------------------------------------------------------------
+{
+  "query": "alcemi.ai vs competitor1.com vs competitor2.com pricing comparison US",
+  "product_announcements": [
+    {
+      "company": "Alcemi",
+      "abbreviation": "AL",
+      "title": "Launched AI Shopping Agent for Shopify stores",
+      "url": "https://alcemi.ai/",
+      "logo": "https://www.google.com/s2/favicons?domain=alcemi.ai&sz=64"
+    },
+    {
+      "company": "ATOM",
+      "abbreviation": "AT",
+      "title": "Launched global AI inference pricing benchmark",
+      "url": "https://a7om.com/",
+      "logo": "https://www.google.com/s2/favicons?domain=a7om.com&sz=64"
+    },
+    {
+      "company": "OpenAI",
+      "abbreviation": "OP",
+      "title": "Released GPT-5.4 with 1M context window",
+      "url": "https://www.resultsense.com/news/2026-03-06-openai-launches-gpt-5-4-professional-work",
+      "logo": "https://www.google.com/s2/favicons?domain=www.resultsense.com&sz=64"
+    },
+    {
+      "company": "Anthropic",
+      "abbreviation": "AN",
+      "title": "Launched Claude Sonnet 4 and Opus models",
+      "url": "http://zdnet.com/article/anthropics-free-claude-4-sonnet-aced-my-coding-tests-but-its-paid-opus-model-somehow-didnt/",
+      "logo": "https://www.google.com/s2/favicons?domain=zdnet.com&sz=64"
+    },
+    {
+      "company": "Alibaba",
+      "abbreviation": "AB",
+      "title": "Released Qwen-VL-Max at 16% of GPT-4o's price",
+      "url": "https://www.ctol.digital/news/llm-price-war-alibaba-qwen-vl-max-vs-gpt4-overseas-challenges/",
+      "logo": "https://www.google.com/s2/favicons?domain=www.ctol.digital&sz=64"
+    }
+  ],
+  "funding": [
+    {
+      "company": "Alcemy",
+      "abbreviation": "AC",
+      "title": "Raised $10M for cement decarbonization",
+      "amount": "$10M",
+      "url": "https://siliconvalleyjournals.com/alcemy-raises-10m-to-advance-cement-decarbonization/",
+      "logo": "https://www.google.com/s2/favicons?domain=siliconvalleyjournals.com&sz=64"
+    },
+    {
+      "company": "OpenAI",
+      "abbreviation": "OP",
+      "title": "Raised $110B in record venture round",
+      "amount": "$110B",
+      "url": "https://www.aol.co.uk/articles/february-biggest-month-venture-history-195021568.html",
+      "logo": "https://www.google.com/s2/favicons?domain=www.aol.co.uk&sz=64"
+    },
+    {
+      "company": "Science Corp",
+      "abbreviation": "SC",
+      "title": "Raised $230M Series C for brain-computer tech",
+      "amount": "$230M",
+      "url": "https://ventureburn.com/science-corp-raises-230m-to-advance-brain-computer-tech/?amp=1",
+      "logo": "https://www.google.com/s2/favicons?domain=ventureburn.com&sz=64"
+    }
+  ],
+  "partnerships": [],
+  "market_signals": [
+    {
+      "company": "Alchemi.ai",
+      "abbreviation": "AM",
+      "title": "Facing competitive pressure from alternatives",
+      "description": "Users seeking alternatives due to pricing concerns and feature limitations",
+      "url": "https://www.softwareworld.co/competitors/alchemiai-alternatives/",
+      "logo": "https://www.google.com/s2/favicons?domain=www.softwareworld.co&sz=64"
+    },
+    {
+      "company": "Anthropic",
+      "abbreviation": "AN",
+      "title": "Gaining US subscription market share",
+      "description": "Subscription surge cutting into OpenAI's lead in enterprise adoption",
+      "url": "https://www.axios.com/2026/02/11/openai-anthropic-chatgpt-claude-subscriptions?stream=top",
+      "logo": "https://www.google.com/s2/favicons?domain=www.axios.com&sz=64"
+    },
+    {
+      "company": "Chinese AI models",
+      "abbreviation": "CA",
+      "title": "Aggressive pricing challenging Western providers",
+      "description": "GLM-4.7 and Qwen-3.5 offering lower token costs than GPT-4o",
+      "url": "https://ai-crucible.com/articles/chinese-ai-models-feb-2026-glm-4-7-vs-qwen-3-5-vs-kimi-k2-5/",
+      "logo": "https://www.google.com/s2/favicons?domain=ai-crucible.com&sz=64"
+    }
+  ],
+  "market_opportunities": [
+    "Develop tiered pricing models for different customer segments (SMB/enterprise) to counter price sensitivity",
+    "Create AI cost-optimization tools that help businesses compare and reduce inference expenses",
+    "Build industry-specific solutions (e.g., e-commerce, healthcare) to differentiate from generic AI providers"
+  ],
+  "competitive_risks": [
+    "Intensifying price wars compressing margins (e.g., Alibaba offering 84% discount vs GPT-4o)",
+    "Regulatory scrutiny increasing compliance costs for AI billing practices",
+    "Overseas expansion challenges for Western AI companies facing localized competitors"
+  ],
+  "action_steps": [
+    {
+      "step": 1,
+      "title": "Conduct competitive pricing analysis for all core markets"
+    },
+    {
+      "step": 2,
+      "title": "Develop transparent cost-monitoring dashboard for customers"
+    },
+    {
+      "step": 3,
+      "title": "Create modular pricing for high-demand features (e.g., extended context windows)"
+    },
+    {
+      "step": 4,
+      "title": "Establish partnerships with regional cloud providers for localized compliance"
+    },
+    {
+      "step": 5,
+      "title": "Launch customer education program on total cost of AI ownership"
+    }
+  ],
+  "persisted_at": "2026-03-07T22:37:40.795317+00:00"
+}
+
+
+################################################################################
+TEST 3 / 4
+################################################################################
+
+RAW USER INPUT:
+  'Find competitors to Notion in the project management space'
+
+--------------------------------------------------------------------------------
+STEP A: INTAKE AGENT — Query Parsing (DeepSeek R1)
+--------------------------------------------------------------------------------
+Optimised query: 'Notion competitors in project management software market'
+
+--------------------------------------------------------------------------------
+STEP B: FULL PIPELINE (intake → gather → aggregate → format)
+--------------------------------------------------------------------------------
+{
+  "query": "Notion competitors in project management software",
+  "product_announcements": [
+    {
+      "company": "Airtable",
+      "abbreviation": "AI",
+      "title": "Launched ProductCentral, an AI-native platform for product teams",
+      "url": "https://www.airtable.com/newsroom/build-better-products-airtable-new-productcentral",
+      "logo": "https://www.google.com/s2/favicons?domain=www.airtable.com&sz=64"
+    },
+    {
+      "company": "ClickUp",
+      "abbreviation": "CL",
+      "title": "Added new AI assistant to compete with Slack and Notion",
+      "url": "https://techcrunch.com/2025/11/04/clickup-adds-new-ai-assistant-to-better-compete-with-slack-and-notion",
+      "logo": "https://www.google.com/s2/favicons?domain=techcrunch.com&sz=64"
+    }
+  ],
+  "funding": [
+    {
+      "company": "Hoop",
+      "abbreviation": "HO",
+      "title": "raised seed funding",
+      "amount": "$5M",
+      "url": "https://www.hoop.app/blog/the-future-of-task-management",
+      "logo": "https://www.google.com/s2/favicons?domain=www.hoop.app&sz=64"
+    },
+    {
+      "company": "Sentra",
+      "abbreviation": "SE",
+      "title": "raised seed funding",
+      "amount": "$5M",
+      "url": "https://www.prnewswire.com/news-releases/sentraapp-raises-5m-to-build-the-collective-mind-for-next-generation-enterprises-302671875.html",
+      "logo": "https://www.google.com/s2/favicons?domain=www.prnewswire.com&sz=64"
+    },
+    {
+      "company": "Aleph",
+      "abbreviation": "AL",
+      "title": "raised Series A and seed funding",
+      "amount": "$16.7M",
+      "url": "https://www.getaleph.com/blog/series-a-funding",
+      "logo": "https://www.google.com/s2/favicons?domain=www.getaleph.com&sz=64"
+    },
+    {
+      "company": "Motion",
+      "abbreviation": "MO",
+      "title": "raised Series A",
+      "amount": "$13M",
+      "url": "https://usemotion.com/blog/we-raised-13-million-in-series-a-to-automate-team-project-management",
+      "logo": "https://www.google.com/s2/favicons?domain=usemotion.com&sz=64"
+    }
+  ],
+  "partnerships": [],
+  "market_signals": [],
+  "market_opportunities": [
+    "Growing demand for AI-native project management tools that automate administrative tasks",
+    "Opportunity in specialized vertical solutions (e.g., product teams) beyond generic project management",
+    "Market gap for integrated tools combining knowledge bases, task automation, and real-time collaboration"
+  ],
+  "competitive_risks": [
+    "Established players (Notion, ClickUp) rapidly enhancing AI capabilities, raising entry barriers",
+    "Fragmentation risk: users may prefer integrated platforms over specialized point solutions",
+    "Privacy concerns in AI tools could deter enterprise adoption if not addressed"
+  ],
+  "action_steps": [
+    {
+      "step": 1,
+      "title": "Prioritize AI automation for task scheduling and prioritization to reduce manual admin work"
+    },
+    {
+      "step": 2,
+      "title": "Develop deep integrations with popular ecosystem tools (Slack, GitHub, Figma) to enhance workflow cohesion"
+    },
+    {
+      "step": 3,
+      "title": "Create industry-specific templates for verticals like product management to capture niche markets"
+    },
+    {
+      "step": 4,
+      "title": "Implement enterprise-grade security and compliance features to address privacy concerns"
+    },
+    {
+      "step": 5,
+      "title": "Monitor emerging competitors' funding rounds for potential partnership or acquisition opportunities"
+    }
+  ],
+  "persisted_at": "2026-03-07T22:42:25.811849+00:00"
+}
+
+
+################################################################################
+TEST 4 / 4
+################################################################################
+
+RAW USER INPUT:
+  'Track Figma, Canva, and Adobe XD for design tool market trends'
+
+--------------------------------------------------------------------------------
+STEP A: INTAKE AGENT — Query Parsing (DeepSeek R1)
+--------------------------------------------------------------------------------
+Optimised query: 'Figma Canva Adobe XD design tools market trends competitive analysis'
+
+--------------------------------------------------------------------------------
+STEP B: FULL PIPELINE (intake → gather → aggregate → format)
+--------------------------------------------------------------------------------
+{
+  "query": "Figma Canva Adobe XD design tools market trends competitive analysis",
+  "product_announcements": [
+    {
+      "company": "Figma",
+      "abbreviation": "FG",
+      "title": "Launched Figma Sites for no-code website design",
+      "url": "https://office.qz.com/figma-2026-design-report-5-things-every-ux-designer-should-know-c9e1d39e3c42",
+      "logo": "https://www.google.com/s2/favicons?domain=office.qz.com&sz=64"
+    },
+    {
+      "company": "Figma",
+      "abbreviation": "FG",
+      "title": "Introduced AI features: Figma Buzz and Figma Draw",
+      "url": "https://www.theverge.com/news/662678/figma-buzz-draw-make-sites-announcement-availability",
+      "logo": "https://www.google.com/s2/favicons?domain=www.theverge.com&sz=64"
+    },
+    {
+      "company": "Figma",
+      "abbreviation": "FG",
+      "title": "Released 4 key updates to compete with Canva and Adobe",
+      "url": "https://www.seeknetusa.com/en/blog/web-marketing-en/figma-update-2025-sites-draw-make/",
+      "logo": "https://www.google.com/s2/favicons?domain=www.seeknetusa.com&sz=64"
+    }
+  ],
+  "funding": [],
+  "partnerships": [],
+  "market_signals": [],
+  "market_opportunities": [
+    "Growing demand for AI-powered design tools (72% designer adoption)",
+    "Expansion of no-code solutions for website/app prototyping",
+    "APAC market growth for collaborative design platforms"
+  ],
+  "competitive_risks": [
+    "Adobe's ecosystem lock-in with Creative Cloud",
+    "Canva's dominance in entry-level/social media design",
+    "Rapid commoditization of generative AI features across tools"
+  ],
+  "action_steps": [
+    {
+      "step": 1,
+      "title": "Accelerate AI prototyping capabilities"
+    },
+    {
+      "step": 2,
+      "title": "Develop enterprise-grade collaboration features"
+    },
+    {
+      "step": 3,
+      "title": "Create seamless Adobe-to-Figma migration tools"
+    },
+    {
+      "step": 4,
+      "title": "Expand APAC-focused localization and support"
+    },
+    {
+      "step": 5,
+      "title": "Build Canva-style templates for non-designers"
+    }
+  ],
+  "persisted_at": "2026-03-07T22:45:59.487756+00:00"
+}
+
+================================================================================
+END OF TEST
+================================================================================

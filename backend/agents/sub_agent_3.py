@@ -1,0 +1,30 @@
+"""
+Sub-Agent 3: Frontend Delivery
+
+Shapes the analysis-agent output into the final frontend-ready response
+dict matching the dashboard sections: Product Announcements, Funding,
+Partnerships, Market Signals, Market Opportunities, Competitive Risks,
+and Action Steps.
+
+This is the last step before the FastAPI endpoint serialises the output
+into the PipelineResponse Pydantic model.
+"""
+
+from langchain_core.runnables import RunnableLambda
+
+
+def _format_for_frontend(inputs: dict) -> dict:
+    return {
+        "query": inputs.get("query", ""),
+        "product_announcements": inputs.get("product_announcements", []),
+        "funding": inputs.get("funding", []),
+        "partnerships": inputs.get("partnerships", []),
+        "market_signals": inputs.get("market_signals", []),
+        "market_opportunities": inputs.get("market_opportunities", []),
+        "competitive_risks": inputs.get("competitive_risks", []),
+        "action_steps": inputs.get("action_steps", []),
+        "persisted_at": inputs.get("persisted_at", ""),
+    }
+
+
+sub_agent_3 = RunnableLambda(_format_for_frontend)

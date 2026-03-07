@@ -46,6 +46,63 @@ class ResearchResponse(BaseModel):
     scraped: list[ScrapedResult]
 
 
+# --- Pipeline models (multi-agent flow) ---
+
+class PipelineRequest(BaseModel):
+    url: str
+
+
+class ProductAnnouncement(BaseModel):
+    company: str
+    abbreviation: str
+    title: str
+    url: str
+    logo: str = ""
+
+
+class FundingItem(BaseModel):
+    company: str
+    abbreviation: str
+    title: str
+    amount: str = ""
+    url: str
+    logo: str = ""
+
+
+class PartnershipItem(BaseModel):
+    company: str
+    abbreviation: str
+    title: str
+    url: str
+    logo: str = ""
+
+
+class MarketSignalItem(BaseModel):
+    company: str
+    abbreviation: str
+    title: str
+    description: str = ""
+    url: str
+    logo: str = ""
+
+
+class ActionStep(BaseModel):
+    step: int
+    title: str
+
+
+class PipelineResponse(BaseModel):
+    query: str
+    product_announcements: list[ProductAnnouncement] = []
+    funding: list[FundingItem] = []
+    partnerships: list[PartnershipItem] = []
+    market_signals: list[MarketSignalItem] = []
+    market_opportunities: list[str] = []
+    competitive_risks: list[str] = []
+    action_steps: list[ActionStep] = []
+    persisted_at: str = ""
+
+
 # --- Prefect tasks ---
 
 @task(name="search-companies")
@@ -116,3 +173,12 @@ def research(request: ResearchRequest):
 @app.get("/hello")
 def hello():
     return {"message": "MarketShift API is running."}
+
+
+@app.post("/pipeline", response_model=PipelineResponse)
+def pipeline(request: PipelineRequest):
+    if not request.url.strip():
+        raise HTTPException(status_code=400, detail="url must not be empty.")
+    from agents.orchestrator import run_pipeline
+    result = run_pipeline(request.url.strip())
+    return result
