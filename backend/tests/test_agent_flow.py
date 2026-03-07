@@ -2,19 +2,19 @@
 Test script for the agent pipeline flow.
 
 Runs each sub-agent individually and the full pipeline, then writes
-all outputs to backend/test_flow_output.txt for inspection.
+all outputs to backend/tests/test_flow_output.txt for inspection.
 """
 
 import json
 import sys
 from pathlib import Path
 
-# Ensure backend is on path
-sys.path.insert(0, str(Path(__file__).parent))
+_BACKEND = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(_BACKEND))
 
 from dotenv import load_dotenv
 
-load_dotenv()
+load_dotenv(_BACKEND / ".env")
 
 from agents.sub_agent_1 import sub_agent_1
 from agents.sub_agent_2 import sub_agent_2
@@ -33,7 +33,7 @@ def _serialize(obj):
 
 def main():
     test_query = "AI writing assistants"
-    output_path = Path(__file__).parent / "test_flow_output.txt"
+    output_path = Path(__file__).resolve().parent / "test_flow_output.txt"
 
     lines = []
     lines.append("=" * 80)

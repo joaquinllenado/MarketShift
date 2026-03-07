@@ -4,7 +4,7 @@ Test script for the intake agent + full pipeline flow.
 Runs product URLs through the full pipeline:
   intake_agent → sub_agent_1 → sub_agent_2 → analysis_agent → sub_agent_3
 
-Writes all output to backend/test_intake_output.txt
+Writes all output to backend/tests/test_intake_output.txt
 """
 
 import json
@@ -12,11 +12,12 @@ import sys
 import time
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).parent))
+_BACKEND = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(_BACKEND))
 
 from dotenv import load_dotenv
 
-load_dotenv()
+load_dotenv(_BACKEND / ".env")
 
 from agents.intake_agent import intake_agent
 from agents.orchestrator import run_pipeline
@@ -27,7 +28,7 @@ TEST_URLS = [
     "https://figma.com",
 ]
 
-OUTPUT_PATH = Path(__file__).parent / "test_intake_output.txt"
+OUTPUT_PATH = Path(__file__).resolve().parent / "test_intake_output.txt"
 
 
 def _serialize(obj):

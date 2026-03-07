@@ -1,14 +1,19 @@
 """Quick test: analysis_agent with existing data + competitor context."""
-import json, sys
+import json
+import sys
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).parent))
+_BACKEND = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(_BACKEND))
+
 from dotenv import load_dotenv
-load_dotenv()
+
+load_dotenv(_BACKEND / ".env")
 
 from agents.analysis_agent import analysis_agent
 
-data = json.loads((Path(__file__).parent / "data" / "results.json").read_text())
+data_path = _BACKEND / "data" / "results.json"
+data = json.loads(data_path.read_text())
 sample = data[-1]
 
 result = analysis_agent.invoke({
