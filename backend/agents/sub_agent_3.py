@@ -16,6 +16,9 @@ from langchain_core.runnables import RunnableLambda
 def _format_for_frontend(inputs: dict) -> dict:
     return {
         "query": inputs.get("query", ""),
+        "product_name": inputs.get("product_name", ""),
+        "product_summary": inputs.get("product_summary", ""),
+        "competitors": inputs.get("competitors", []),
         "product_announcements": inputs.get("product_announcements", []),
         "funding": inputs.get("funding", []),
         "partnerships": inputs.get("partnerships", []),

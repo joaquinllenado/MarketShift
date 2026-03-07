@@ -19,6 +19,7 @@ Output: {
 import json
 import os
 import re
+from urllib.parse import urlparse
 
 from dotenv import load_dotenv
 from exa_py import Exa
@@ -37,16 +38,23 @@ You will receive:
 2. A list of similar companies discovered via web similarity search.
 
 Your job:
-1. Pick the **top 5 most relevant direct competitors** from the list.
-   Prefer companies in the same market/vertical that compete for the
-   same customers. Exclude unrelated results, generic directories,
-   or the product itself.
-2. For each competitor, return its name and URL.
-3. Generate a concise **market context string** (max 15 words) describing
+1. Pick the **top 5 most relevant direct competitors** from the similar
+   companies list. Prefer companies in the same market/vertical that
+   compete for the same customers. STRICTLY EXCLUDE:
+   - The product company itself (including regional variants, e.g. "Notion Korea")
+   - Subsidiaries, divisions, bottlers, or affiliates of the product company
+   - Generic directories, news articles, or review sites
+   Only include genuinely independent competing companies.
+2. If the similar companies list has fewer than 5 valid competitors,
+   use your own knowledge to add well-known competitors until you have 5.
+3. For each competitor, return its name and homepage URL.
+4. Generate a concise **market context string** (max 15 words) describing
    the competitive landscape (e.g. "AI writing assistants SaaS market"
-   or "e-commerce customer support chatbot platforms").
-4. Extract the product's company name from its URL/description.
-5. Write a one-sentence summary of what the product does.
+   or "global non-alcoholic beverage companies").
+5. Extract the product's company name from its URL/description.
+6. Write a one-sentence summary of what the product does.
+
+You MUST always return exactly 5 competitors and fill in product_name.
 
 Reply with ONLY a JSON object (no markdown fences, no explanation):
 
@@ -55,18 +63,18 @@ Reply with ONLY a JSON object (no markdown fences, no explanation):
   "product_summary": "<one-sentence description>",
   "market_context": "<concise market description, max 15 words>",
   "competitors": [
-    {"name": "<competitor name>", "url": "<competitor URL>"},
+    {"name": "<competitor name>", "url": "<competitor homepage URL>"},
     ...
   ]
 }\
 """
 
 llm = ChatOpenAI(
-    model="deepseek-ai/DeepSeek-R1-0528",
+    model="deepseek-ai/DeepSeek-V3-0324",
     base_url="https://api.gmi-serving.com/v1",
     api_key=os.environ.get("GMI_API_KEY"),
     temperature=0.3,
-    max_tokens=4096,
+    max_tokens=1024,
 )
 
 
@@ -104,12 +112,30 @@ def _discover_competitors(inputs: dict) -> dict:
         product_highlights = []
 
     # Step 2: Find similar companies via Exa
+    product_domain = urlparse(product_url).netloc.lower().removeprefix("www.")
+    # Build a short brand keyword from the domain for fuzzy self-filtering
+    brand_root = product_domain.split(".")[0].replace("-", "").replace("company", "").lower()
+
+    def _is_self(result_url: str, result_title: str) -> bool:
+        """Return True if a result appears to belong to the product company."""
+        rdomain = urlparse(result_url).netloc.lower().removeprefix("www.")
+        if product_domain in rdomain or rdomain in product_domain:
+            return True
+        rdomain_root = rdomain.split(".")[0].replace("-", "").lower()
+        if len(brand_root) >= 3 and brand_root in rdomain_root:
+            return True
+        title_lower = result_title.lower().replace("-", " ")
+        if len(brand_root) >= 3 and brand_root in title_lower.replace(" ", ""):
+            return True
+        return False
+
     try:
         similar = exa.find_similar_and_contents(
             product_url,
             category="company",
-            num_results=10,
+            num_results=15,
             highlights={"num_sentences": 2, "highlights_per_url": 1},
+            exclude_domains=[product_domain],
         )
         similar_companies = [
             {
@@ -118,6 +144,7 @@ def _discover_competitors(inputs: dict) -> dict:
                 "highlights": r.highlights or [],
             }
             for r in similar.results
+            if not _is_self(r.url, r.title or "")
         ]
     except Exception:
         similar_companies = []

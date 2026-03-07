@@ -118,11 +118,11 @@ exact structure:
 """
 
 llm = ChatOpenAI(
-    model="deepseek-ai/DeepSeek-R1-0528",
+    model="deepseek-ai/DeepSeek-V3-0324",
     base_url="https://api.gmi-serving.com/v1",
     api_key=os.environ.get("GMI_API_KEY"),
     temperature=0.3,
-    max_tokens=8192,
+    max_tokens=2048,
 )
 
 

@@ -1,399 +1,684 @@
 ================================================================================
-MARKETSHIFT INTAKE AGENT + PIPELINE FLOW TEST
+MARKETSHIFT PIPELINE FLOW TEST
 ================================================================================
 
 ################################################################################
-TEST 1 / 4
+TEST 1 / 3
 ################################################################################
 
-RAW USER INPUT:
-  'alcemi.ai, US SaaS market. Competitors: jasper.ai, copy.ai, writesonic.com. Focus on pricing'
+URL: https://alcemi.ai
 
 --------------------------------------------------------------------------------
-STEP A: INTAKE AGENT — Query Parsing (DeepSeek R1)
+STEP A: INTAKE AGENT — Competitor Discovery
 --------------------------------------------------------------------------------
-Optimised query: 'alcemi.ai pricing vs jasper.ai, copy.ai, writesonic.com in US SaaS market'
+Duration: 7.4s
+Product: Alcemi
+Query: Kopa.ai, Askflow AI, Askly, Ami AI, Botique.me AI-powered Shopify sales and support agents
+Competitors (5): Kopa.ai, Askflow AI, Askly, Ami AI, Botique.me
 
 --------------------------------------------------------------------------------
-STEP B: FULL PIPELINE (intake → gather → aggregate → format)
+STEP B: FULL PIPELINE (intake → gather → aggregate → analyse → format)
 --------------------------------------------------------------------------------
+Duration: 38.3s
+Product announcements: 5
+Funding: 5
+Partnerships: 5
+Market signals: 5
+Market opportunities: 5
+Competitive risks: 5
+Action steps: 5
+
 {
-  "query": "alcemi.ai vs jasper.ai vs copy.ai vs writesonic.com pricing comparison US SaaS market",
-  "product_announcements": [],
-  "funding": [
-    {
-      "company": "Jasper",
-      "abbreviation": "JA",
-      "title": "raised over $125 million in funding",
-      "amount": "$125M",
-      "url": "https://www.conbersa.ai/learn/ai-writing-tools-comparison",
-      "logo": "https://www.google.com/s2/favicons?domain=www.conbersa.ai&sz=64"
-    }
-  ],
-  "partnerships": [],
-  "market_signals": [],
-  "market_opportunities": [
-    "Growing demand for budget-friendly AI writing tools among SMBs and startups, evidenced by freemium models gaining traction",
-    "Expansion potential in multilingual content creation, with tools like Writesonic supporting 24 languages attracting global users",
-    "Opportunity to integrate AI writing assistants into vertical SaaS ecosystems (e.g., real estate, e-commerce) for specialized content generation"
-  ],
-  "competitive_risks": [
-    "Price sensitivity driving users to free alternatives (e.g., ScripAI) threatens premium players like Jasper",
-    "Sudden pricing changes without transparent communication eroding customer trust, as reported with Copy.ai",
-    "Feature parity erosion as competitors rapidly expand template libraries (100+ templates in Writesonic vs. 50+ in Jasper)"
-  ],
-  "action_steps": [
-    {
-      "step": 1,
-      "title": "Conduct granular pricing analysis to identify optimal entry points for SMBs without cannibalizing enterprise revenue"
-    },
-    {
-      "step": 2,
-      "title": "Develop transparent pricing change protocols to prevent customer backlash and churn"
-    },
-    {
-      "step": 3,
-      "title": "Accelerate localization features for non-English markets to capture international growth"
-    },
-    {
-      "step": 4,
-      "title": "Create industry-specific content modules targeting high-value verticals like SaaS marketing and e-commerce"
-    },
-    {
-      "step": 5,
-      "title": "Establish partner integrations with CRM/marketing automation platforms to enhance workflow stickiness"
-    }
-  ],
-  "persisted_at": "2026-03-07T22:33:52.383747+00:00"
-}
-
-
-################################################################################
-TEST 2 / 4
-################################################################################
-
-RAW USER INPUT:
-  'I run alcemi.ai in the US - track competitor1.com, competitor2.com. Focus on pricing'
-
---------------------------------------------------------------------------------
-STEP A: INTAKE AGENT — Query Parsing (DeepSeek R1)
---------------------------------------------------------------------------------
-Optimised query: 'alcemi.ai vs competitor1.com vs competitor2.com pricing comparison US market'
-
---------------------------------------------------------------------------------
-STEP B: FULL PIPELINE (intake → gather → aggregate → format)
---------------------------------------------------------------------------------
-{
-  "query": "alcemi.ai vs competitor1.com vs competitor2.com pricing comparison US",
+  "query": "Kopa.ai, Askflow AI, Qlode.ai, Askly, Ami AI AI-powered Shopify sales and support tools",
   "product_announcements": [
     {
-      "company": "Alcemi",
+      "company": "Askflow AI",
+      "abbreviation": "AF",
+      "title": "Launched AI-driven product recommendation quiz for Shopify",
+      "url": "https://askflow.ai/",
+      "logo": "https://www.google.com/s2/favicons?domain=askflow.ai&sz=64"
+    },
+    {
+      "company": "YepAI",
+      "abbreviation": "YE",
+      "title": "Introduced AI sales agent to reduce cart abandonment and answer customer queries",
+      "url": "https://yepai.io/",
+      "logo": "https://www.google.com/s2/favicons?domain=yepai.io&sz=64"
+    },
+    {
+      "company": "Asklo AI",
       "abbreviation": "AL",
-      "title": "Launched AI Shopping Agent for Shopify stores",
-      "url": "https://alcemi.ai/",
-      "logo": "https://www.google.com/s2/favicons?domain=alcemi.ai&sz=64"
+      "title": "Released AI assistant to automatically answer customer questions on product pages",
+      "url": "https://www.producthunt.com/products/asklo-ai",
+      "logo": "https://www.google.com/s2/favicons?domain=www.producthunt.com&sz=64"
     },
     {
-      "company": "ATOM",
-      "abbreviation": "AT",
-      "title": "Launched global AI inference pricing benchmark",
-      "url": "https://a7om.com/",
-      "logo": "https://www.google.com/s2/favicons?domain=a7om.com&sz=64"
+      "company": "Shopify AI chatbot",
+      "abbreviation": "SC",
+      "title": "Launched ChatGPT-powered AI chatbot for Shopify stores",
+      "url": "https://www.producthunt.com/products/shopify-ai-chatbot",
+      "logo": "https://www.google.com/s2/favicons?domain=www.producthunt.com&sz=64"
     },
     {
-      "company": "OpenAI",
-      "abbreviation": "OP",
-      "title": "Released GPT-5.4 with 1M context window",
-      "url": "https://www.resultsense.com/news/2026-03-06-openai-launches-gpt-5-4-professional-work",
-      "logo": "https://www.google.com/s2/favicons?domain=www.resultsense.com&sz=64"
-    },
-    {
-      "company": "Anthropic",
-      "abbreviation": "AN",
-      "title": "Launched Claude Sonnet 4 and Opus models",
-      "url": "http://zdnet.com/article/anthropics-free-claude-4-sonnet-aced-my-coding-tests-but-its-paid-opus-model-somehow-didnt/",
-      "logo": "https://www.google.com/s2/favicons?domain=zdnet.com&sz=64"
-    },
-    {
-      "company": "Alibaba",
-      "abbreviation": "AB",
-      "title": "Released Qwen-VL-Max at 16% of GPT-4o's price",
-      "url": "https://www.ctol.digital/news/llm-price-war-alibaba-qwen-vl-max-vs-gpt4-overseas-challenges/",
-      "logo": "https://www.google.com/s2/favicons?domain=www.ctol.digital&sz=64"
+      "company": "Qlode.ai",
+      "abbreviation": "QL",
+      "title": "Introduced AI stylist assistant for personalized fashion recommendations",
+      "url": "https://qlode.ai/",
+      "logo": "https://www.google.com/s2/favicons?domain=qlode.ai&sz=64"
     }
   ],
   "funding": [
     {
-      "company": "Alcemy",
-      "abbreviation": "AC",
-      "title": "Raised $10M for cement decarbonization",
-      "amount": "$10M",
-      "url": "https://siliconvalleyjournals.com/alcemy-raises-10m-to-advance-cement-decarbonization/",
-      "logo": "https://www.google.com/s2/favicons?domain=siliconvalleyjournals.com&sz=64"
+      "company": "Kopa AI",
+      "abbreviation": "KO",
+      "title": "raised seed funding",
+      "amount": "",
+      "url": "https://kopa.ai/",
+      "logo": "https://www.google.com/s2/favicons?domain=kopa.ai&sz=64"
     },
     {
-      "company": "OpenAI",
-      "abbreviation": "OP",
-      "title": "Raised $110B in record venture round",
-      "amount": "$110B",
-      "url": "https://www.aol.co.uk/articles/february-biggest-month-venture-history-195021568.html",
-      "logo": "https://www.google.com/s2/favicons?domain=www.aol.co.uk&sz=64"
+      "company": "Askflow AI",
+      "abbreviation": "AF",
+      "title": "raised Series A",
+      "amount": "",
+      "url": "https://askflow.ai/",
+      "logo": "https://www.google.com/s2/favicons?domain=askflow.ai&sz=64"
     },
     {
-      "company": "Science Corp",
-      "abbreviation": "SC",
-      "title": "Raised $230M Series C for brain-computer tech",
-      "amount": "$230M",
-      "url": "https://ventureburn.com/science-corp-raises-230m-to-advance-brain-computer-tech/?amp=1",
-      "logo": "https://www.google.com/s2/favicons?domain=ventureburn.com&sz=64"
+      "company": "Qlode.ai",
+      "abbreviation": "QL",
+      "title": "raised seed funding",
+      "amount": "",
+      "url": "https://qlode.ai/",
+      "logo": "https://www.google.com/s2/favicons?domain=qlode.ai&sz=64"
+    },
+    {
+      "company": "YepAI",
+      "abbreviation": "YE",
+      "title": "raised seed funding",
+      "amount": "",
+      "url": "https://yepai.io/",
+      "logo": "https://www.google.com/s2/favicons?domain=yepai.io&sz=64"
+    },
+    {
+      "company": "Asklo AI",
+      "abbreviation": "AL",
+      "title": "raised seed funding",
+      "amount": "",
+      "url": "https://www.producthunt.com/products/asklo-ai",
+      "logo": "https://www.google.com/s2/favicons?domain=www.producthunt.com&sz=64"
     }
   ],
-  "partnerships": [],
+  "partnerships": [
+    {
+      "company": "Askflow AI",
+      "abbreviation": "AF",
+      "title": "announced integration with Klaviyo, Google Analytics, and Meta Pixel",
+      "url": "https://apps.shopify.com/askflow-ai",
+      "logo": "https://www.google.com/s2/favicons?domain=apps.shopify.com&sz=64"
+    },
+    {
+      "company": "Kopa AI",
+      "abbreviation": "KO",
+      "title": "partnered with e-commerce platforms for AI agent deployment",
+      "url": "https://kopa.ai/",
+      "logo": "https://www.google.com/s2/favicons?domain=kopa.ai&sz=64"
+    },
+    {
+      "company": "Qlode.ai",
+      "abbreviation": "QL",
+      "title": "collaborated with fashion e-commerce platforms for AI stylist integration",
+      "url": "https://qlode.ai/",
+      "logo": "https://www.google.com/s2/favicons?domain=qlode.ai&sz=64"
+    },
+    {
+      "company": "YepAI",
+      "abbreviation": "YE",
+      "title": "integrated with Shopify for sales automation",
+      "url": "https://yepai.io/",
+      "logo": "https://www.google.com/s2/favicons?domain=yepai.io&sz=64"
+    },
+    {
+      "company": "Asklo AI",
+      "abbreviation": "AL",
+      "title": "partnered with Shopify for AI assistant deployment",
+      "url": "https://www.producthunt.com/products/asklo-ai",
+      "logo": "https://www.google.com/s2/favicons?domain=www.producthunt.com&sz=64"
+    }
+  ],
   "market_signals": [
     {
-      "company": "Alchemi.ai",
-      "abbreviation": "AM",
-      "title": "Facing competitive pressure from alternatives",
-      "description": "Users seeking alternatives due to pricing concerns and feature limitations",
-      "url": "https://www.softwareworld.co/competitors/alchemiai-alternatives/",
-      "logo": "https://www.google.com/s2/favicons?domain=www.softwareworld.co&sz=64"
+      "company": "Kopa AI",
+      "abbreviation": "KO",
+      "title": "expanding to autonomous e-commerce solutions",
+      "description": "Kopa AI is building AI agents to streamline e-commerce operations and marketing.",
+      "url": "https://kopa.ai/",
+      "logo": "https://www.google.com/s2/favicons?domain=kopa.ai&sz=64"
     },
     {
-      "company": "Anthropic",
-      "abbreviation": "AN",
-      "title": "Gaining US subscription market share",
-      "description": "Subscription surge cutting into OpenAI's lead in enterprise adoption",
-      "url": "https://www.axios.com/2026/02/11/openai-anthropic-chatgpt-claude-subscriptions?stream=top",
-      "logo": "https://www.google.com/s2/favicons?domain=www.axios.com&sz=64"
+      "company": "Askflow AI",
+      "abbreviation": "AF",
+      "title": "targeting Shopify brands with personalized chat experiences",
+      "description": "Askflow AI focuses on converting more customers with AI-driven chat.",
+      "url": "https://www.askflow.ai/",
+      "logo": "https://www.google.com/s2/favicons?domain=www.askflow.ai&sz=64"
     },
     {
-      "company": "Chinese AI models",
-      "abbreviation": "CA",
-      "title": "Aggressive pricing challenging Western providers",
-      "description": "GLM-4.7 and Qwen-3.5 offering lower token costs than GPT-4o",
-      "url": "https://ai-crucible.com/articles/chinese-ai-models-feb-2026-glm-4-7-vs-qwen-3-5-vs-kimi-k2-5/",
-      "logo": "https://www.google.com/s2/favicons?domain=ai-crucible.com&sz=64"
+      "company": "Qlode.ai",
+      "abbreviation": "QL",
+      "title": "focusing on fashion e-commerce with AI stylist",
+      "description": "Qlode.ai aims to reduce abandoned carts and improve conversions in fashion e-commerce.",
+      "url": "https://qlode.ai/",
+      "logo": "https://www.google.com/s2/favicons?domain=qlode.ai&sz=64"
+    },
+    {
+      "company": "YepAI",
+      "abbreviation": "YE",
+      "title": "addressing Shopify merchant pain points with AI sales agent",
+      "description": "YepAI targets cart abandonment and unanswered messages with its AI solution.",
+      "url": "https://yepai.io/",
+      "logo": "https://www.google.com/s2/favicons?domain=yepai.io&sz=64"
+    },
+    {
+      "company": "Asklo AI",
+      "abbreviation": "AL",
+      "title": "expanding AI assistant capabilities for customer support",
+      "description": "Asklo AI is enhancing its AI assistant to answer more customer questions automatically.",
+      "url": "https://www.producthunt.com/products/asklo-ai",
+      "logo": "https://www.google.com/s2/favicons?domain=www.producthunt.com&sz=64"
     }
   ],
   "market_opportunities": [
-    "Develop tiered pricing models for different customer segments (SMB/enterprise) to counter price sensitivity",
-    "Create AI cost-optimization tools that help businesses compare and reduce inference expenses",
-    "Build industry-specific solutions (e.g., e-commerce, healthcare) to differentiate from generic AI providers"
+    "Growing demand for AI-driven personalized shopping experiences in e-commerce",
+    "Increasing need for solutions to reduce cart abandonment and improve conversions",
+    "Expansion opportunities in fashion e-commerce with AI stylist tools",
+    "Potential for AI chatbots to handle customer support and sales simultaneously",
+    "Integration with major platforms like Klaviyo and Meta Pixel for enhanced analytics"
   ],
   "competitive_risks": [
-    "Intensifying price wars compressing margins (e.g., Alibaba offering 84% discount vs GPT-4o)",
-    "Regulatory scrutiny increasing compliance costs for AI billing practices",
-    "Overseas expansion challenges for Western AI companies facing localized competitors"
+    "High competition in AI chatbot and recommendation tools for Shopify",
+    "Dependence on Shopify's ecosystem limits market expansion",
+    "Lack of differentiation in AI features among competitors",
+    "Challenges in scaling AI solutions for diverse e-commerce niches",
+    "Potential for larger players to enter the market with more resources"
   ],
   "action_steps": [
     {
       "step": 1,
-      "title": "Conduct competitive pricing analysis for all core markets"
+      "title": "Differentiate Alcemi by focusing on unique AI-guided selling features"
     },
     {
       "step": 2,
-      "title": "Develop transparent cost-monitoring dashboard for customers"
+      "title": "Explore partnerships with major e-commerce platforms beyond Shopify"
     },
     {
       "step": 3,
-      "title": "Create modular pricing for high-demand features (e.g., extended context windows)"
+      "title": "Enhance integration capabilities with analytics tools like Google Analytics and Meta Pixel"
     },
     {
       "step": 4,
-      "title": "Establish partnerships with regional cloud providers for localized compliance"
+      "title": "Invest in AI training to improve personalized recommendations and reduce cart abandonment"
     },
     {
       "step": 5,
-      "title": "Launch customer education program on total cost of AI ownership"
+      "title": "Monitor competitor funding rounds to anticipate market shifts and innovations"
     }
   ],
-  "persisted_at": "2026-03-07T22:37:40.795317+00:00"
+  "persisted_at": "2026-03-07T23:16:28.076715+00:00"
 }
 
 
 ################################################################################
-TEST 3 / 4
+TEST 2 / 3
 ################################################################################
 
-RAW USER INPUT:
-  'Find competitors to Notion in the project management space'
+URL: https://notion.so
 
 --------------------------------------------------------------------------------
-STEP A: INTAKE AGENT — Query Parsing (DeepSeek R1)
+STEP A: INTAKE AGENT — Competitor Discovery
 --------------------------------------------------------------------------------
-Optimised query: 'Notion competitors in project management software market'
+Duration: 7.5s
+Product: Notion
+Query: Notion Korea, Notion, Notion, Bench Work, Notion at NU AI-powered productivity and collaboration platforms
+Competitors (5): Notion Korea, Notion, Notion, Bench Work, Notion at NU
 
 --------------------------------------------------------------------------------
-STEP B: FULL PIPELINE (intake → gather → aggregate → format)
+STEP B: FULL PIPELINE (intake → gather → aggregate → analyse → format)
 --------------------------------------------------------------------------------
+Duration: 39.1s
+Product announcements: 5
+Funding: 5
+Partnerships: 5
+Market signals: 5
+Market opportunities: 5
+Competitive risks: 5
+Action steps: 5
+
 {
-  "query": "Notion competitors in project management software",
+  "query": "Notion Korea, Notion, Notion, Notion, Notion at NU AI-powered collaborative workspace platforms",
   "product_announcements": [
     {
-      "company": "Airtable",
-      "abbreviation": "AI",
-      "title": "Launched ProductCentral, an AI-native platform for product teams",
-      "url": "https://www.airtable.com/newsroom/build-better-products-airtable-new-productcentral",
-      "logo": "https://www.google.com/s2/favicons?domain=www.airtable.com&sz=64"
+      "company": "Notion",
+      "abbreviation": "NO",
+      "title": "Notion AI launched in Alpha",
+      "url": "https://www.producthunt.com/stories/notion-ai-is-in-alpha",
+      "logo": "https://www.google.com/s2/favicons?domain=www.producthunt.com&sz=64"
     },
     {
-      "company": "ClickUp",
-      "abbreviation": "CL",
-      "title": "Added new AI assistant to compete with Slack and Notion",
-      "url": "https://techcrunch.com/2025/11/04/clickup-adds-new-ai-assistant-to-better-compete-with-slack-and-notion",
-      "logo": "https://www.google.com/s2/favicons?domain=techcrunch.com&sz=64"
+      "company": "Notion",
+      "abbreviation": "NO",
+      "title": "Introducing Notion AI",
+      "url": "https://www.notion.com/blog/introducing-notion-ai",
+      "logo": "https://www.google.com/s2/favicons?domain=www.notion.com&sz=64"
+    },
+    {
+      "company": "Notion",
+      "abbreviation": "NO",
+      "title": "New AI-powered Notion Projects",
+      "url": "https://www.notion.com/blog/new-ai-powered-notion-projects",
+      "logo": "https://www.google.com/s2/favicons?domain=www.notion.com&sz=64"
+    },
+    {
+      "company": "Notion",
+      "abbreviation": "NO",
+      "title": "Notion AI integrated into workspace",
+      "url": "https://notion.com/product/ai",
+      "logo": "https://www.google.com/s2/favicons?domain=notion.com&sz=64"
+    },
+    {
+      "company": "Notion",
+      "abbreviation": "NO",
+      "title": "Notion AI writing assistant",
+      "url": "https://play.google.com/store/apps/details?hl=en&id=notion.id",
+      "logo": "https://www.google.com/s2/favicons?domain=play.google.com&sz=64"
     }
   ],
   "funding": [
     {
-      "company": "Hoop",
-      "abbreviation": "HO",
-      "title": "raised seed funding",
-      "amount": "$5M",
-      "url": "https://www.hoop.app/blog/the-future-of-task-management",
-      "logo": "https://www.google.com/s2/favicons?domain=www.hoop.app&sz=64"
+      "company": "Notion",
+      "abbreviation": "NO",
+      "title": "raised Series B",
+      "amount": "",
+      "url": "https://www.notion.com/",
+      "logo": "https://www.google.com/s2/favicons?domain=www.notion.com&sz=64"
     },
     {
-      "company": "Sentra",
-      "abbreviation": "SE",
-      "title": "raised seed funding",
-      "amount": "$5M",
-      "url": "https://www.prnewswire.com/news-releases/sentraapp-raises-5m-to-build-the-collective-mind-for-next-generation-enterprises-302671875.html",
-      "logo": "https://www.google.com/s2/favicons?domain=www.prnewswire.com&sz=64"
+      "company": "Notion Korea",
+      "abbreviation": "NK",
+      "title": "raised funding",
+      "amount": "",
+      "url": "https://notion.so/product",
+      "logo": "https://www.google.com/s2/favicons?domain=notion.so&sz=64"
     },
     {
-      "company": "Aleph",
-      "abbreviation": "AL",
-      "title": "raised Series A and seed funding",
-      "amount": "$16.7M",
-      "url": "https://www.getaleph.com/blog/series-a-funding",
-      "logo": "https://www.google.com/s2/favicons?domain=www.getaleph.com&sz=64"
+      "company": "Notion",
+      "abbreviation": "NO",
+      "title": "raised Series C",
+      "amount": "",
+      "url": "https://www.notion.com/careers",
+      "logo": "https://www.google.com/s2/favicons?domain=www.notion.com&sz=64"
     },
     {
-      "company": "Motion",
-      "abbreviation": "MO",
+      "company": "Notion",
+      "abbreviation": "NO",
       "title": "raised Series A",
-      "amount": "$13M",
-      "url": "https://usemotion.com/blog/we-raised-13-million-in-series-a-to-automate-team-project-management",
-      "logo": "https://www.google.com/s2/favicons?domain=usemotion.com&sz=64"
+      "amount": "",
+      "url": "https://www.notion.com/",
+      "logo": "https://www.google.com/s2/favicons?domain=www.notion.com&sz=64"
+    },
+    {
+      "company": "Notion",
+      "abbreviation": "NO",
+      "title": "raised seed round",
+      "amount": "",
+      "url": "https://www.notion.com/",
+      "logo": "https://www.google.com/s2/favicons?domain=www.notion.com&sz=64"
     }
   ],
-  "partnerships": [],
-  "market_signals": [],
+  "partnerships": [
+    {
+      "company": "Notion",
+      "abbreviation": "NO",
+      "title": "announced partnership with OpenAI",
+      "url": "https://www.notion.com/blog/introducing-notion-ai",
+      "logo": "https://www.google.com/s2/favicons?domain=www.notion.com&sz=64"
+    },
+    {
+      "company": "Notion Korea",
+      "abbreviation": "NK",
+      "title": "announced partnership with local tech firms",
+      "url": "https://www.koreapost.co.kr/news/articleView.html?idxno=84635",
+      "logo": "https://www.google.com/s2/favicons?domain=www.koreapost.co.kr&sz=64"
+    },
+    {
+      "company": "Notion",
+      "abbreviation": "NO",
+      "title": "announced partnership with Google",
+      "url": "https://play.google.com/store/apps/details?hl=en&id=notion.id",
+      "logo": "https://www.google.com/s2/favicons?domain=play.google.com&sz=64"
+    },
+    {
+      "company": "Notion",
+      "abbreviation": "NO",
+      "title": "announced partnership with Microsoft",
+      "url": "https://www.notion.com/",
+      "logo": "https://www.google.com/s2/favicons?domain=www.notion.com&sz=64"
+    },
+    {
+      "company": "Notion",
+      "abbreviation": "NO",
+      "title": "announced partnership with Slack",
+      "url": "https://www.notion.com/",
+      "logo": "https://www.google.com/s2/favicons?domain=www.notion.com&sz=64"
+    }
+  ],
+  "market_signals": [
+    {
+      "company": "Notion Korea",
+      "abbreviation": "NK",
+      "title": "expanding to Korean market",
+      "description": "Notion Korea is targeting local users with tailored services.",
+      "url": "https://www.koreapost.co.kr/news/articleView.html?idxno=84635",
+      "logo": "https://www.google.com/s2/favicons?domain=www.koreapost.co.kr&sz=64"
+    },
+    {
+      "company": "Notion",
+      "abbreviation": "NO",
+      "title": "expanding to enterprise market",
+      "description": "Notion is focusing on enterprise solutions with AI integration.",
+      "url": "https://www.notion.com/blog/new-ai-powered-notion-projects",
+      "logo": "https://www.google.com/s2/favicons?domain=www.notion.com&sz=64"
+    },
+    {
+      "company": "Notion",
+      "abbreviation": "NO",
+      "title": "expanding to education sector",
+      "description": "Notion is being adopted by educational institutions for note-taking and collaboration.",
+      "url": "https://play.google.com/store/apps/details?hl=en&id=notion.id",
+      "logo": "https://www.google.com/s2/favicons?domain=play.google.com&sz=64"
+    },
+    {
+      "company": "Notion",
+      "abbreviation": "NO",
+      "title": "expanding to remote work solutions",
+      "description": "Notion is enhancing features for remote teams.",
+      "url": "https://www.notion.com/careers",
+      "logo": "https://www.google.com/s2/favicons?domain=www.notion.com&sz=64"
+    },
+    {
+      "company": "Notion",
+      "abbreviation": "NO",
+      "title": "expanding to AI-powered tools",
+      "description": "Notion is integrating AI across its platform.",
+      "url": "https://www.notion.com/blog/introducing-notion-ai",
+      "logo": "https://www.google.com/s2/favicons?domain=www.notion.com&sz=64"
+    }
+  ],
   "market_opportunities": [
-    "Growing demand for AI-native project management tools that automate administrative tasks",
-    "Opportunity in specialized vertical solutions (e.g., product teams) beyond generic project management",
-    "Market gap for integrated tools combining knowledge bases, task automation, and real-time collaboration"
+    "Growing demand for AI-powered workspace tools.",
+    "Expansion into emerging markets like Korea.",
+    "Increasing adoption in enterprise and education sectors.",
+    "Integration with other productivity tools (e.g., Slack, Google).",
+    "Potential for AI-driven automation in project management."
   ],
   "competitive_risks": [
-    "Established players (Notion, ClickUp) rapidly enhancing AI capabilities, raising entry barriers",
-    "Fragmentation risk: users may prefer integrated platforms over specialized point solutions",
-    "Privacy concerns in AI tools could deter enterprise adoption if not addressed"
+    "Competition from established players like Microsoft and Google.",
+    "High expectations for AI features and performance.",
+    "Localization challenges in non-English markets.",
+    "Dependence on third-party AI providers (e.g., OpenAI).",
+    "Scalability issues with rapid user growth."
   ],
   "action_steps": [
     {
       "step": 1,
-      "title": "Prioritize AI automation for task scheduling and prioritization to reduce manual admin work"
+      "title": "Enhance AI features to stay competitive."
     },
     {
       "step": 2,
-      "title": "Develop deep integrations with popular ecosystem tools (Slack, GitHub, Figma) to enhance workflow cohesion"
+      "title": "Focus on localization for non-English markets."
     },
     {
       "step": 3,
-      "title": "Create industry-specific templates for verticals like product management to capture niche markets"
+      "title": "Strengthen partnerships with tech giants."
     },
     {
       "step": 4,
-      "title": "Implement enterprise-grade security and compliance features to address privacy concerns"
+      "title": "Expand enterprise solutions with tailored features."
     },
     {
       "step": 5,
-      "title": "Monitor emerging competitors' funding rounds for potential partnership or acquisition opportunities"
+      "title": "Invest in user education and onboarding."
     }
   ],
-  "persisted_at": "2026-03-07T22:42:25.811849+00:00"
+  "persisted_at": "2026-03-07T23:17:15.227237+00:00"
 }
 
 
 ################################################################################
-TEST 4 / 4
+TEST 3 / 3
 ################################################################################
 
-RAW USER INPUT:
-  'Track Figma, Canva, and Adobe XD for design tool market trends'
+URL: https://figma.com
 
 --------------------------------------------------------------------------------
-STEP A: INTAKE AGENT — Query Parsing (DeepSeek R1)
+STEP A: INTAKE AGENT — Competitor Discovery
 --------------------------------------------------------------------------------
-Optimised query: 'Figma Canva Adobe XD design tools market trends competitive analysis'
+Duration: 7.1s
+Product: Figma
+Query: Miro, Sketch, Framer, InVision, Axure Software Solutions collaborative design and prototyping tools
+Competitors (5): Miro, Sketch, Framer, InVision, Axure Software Solutions
 
 --------------------------------------------------------------------------------
-STEP B: FULL PIPELINE (intake → gather → aggregate → format)
+STEP B: FULL PIPELINE (intake → gather → aggregate → analyse → format)
 --------------------------------------------------------------------------------
+Duration: 42.7s
+Product announcements: 5
+Funding: 5
+Partnerships: 5
+Market signals: 5
+Market opportunities: 5
+Competitive risks: 5
+Action steps: 5
+
 {
-  "query": "Figma Canva Adobe XD design tools market trends competitive analysis",
+  "query": "Miro, Sketch, Framer, InVision, Axure Software Solutions collaborative design and prototyping tools",
   "product_announcements": [
     {
-      "company": "Figma",
-      "abbreviation": "FG",
-      "title": "Launched Figma Sites for no-code website design",
-      "url": "https://office.qz.com/figma-2026-design-report-5-things-every-ux-designer-should-know-c9e1d39e3c42",
-      "logo": "https://www.google.com/s2/favicons?domain=office.qz.com&sz=64"
+      "company": "Miro",
+      "abbreviation": "MI",
+      "title": "AI Innovation Workspace empowering teams",
+      "url": "https://miro.com/blog/whats-new-january-2026/",
+      "logo": "https://www.google.com/s2/favicons?domain=miro.com&sz=64"
     },
     {
-      "company": "Figma",
-      "abbreviation": "FG",
-      "title": "Introduced AI features: Figma Buzz and Figma Draw",
-      "url": "https://www.theverge.com/news/662678/figma-buzz-draw-make-sites-announcement-availability",
-      "logo": "https://www.google.com/s2/favicons?domain=www.theverge.com&sz=64"
+      "company": "Sketch",
+      "abbreviation": "SK",
+      "title": "New prototyping tools and web app refresh",
+      "url": "https://sketch.com/blog/prototyping-improvements-and-a-new-way-to-export-assets-directly-from-cloud-whats-new-in-sketch",
+      "logo": "https://www.google.com/s2/favicons?domain=sketch.com&sz=64"
     },
     {
-      "company": "Figma",
-      "abbreviation": "FG",
-      "title": "Released 4 key updates to compete with Canva and Adobe",
-      "url": "https://www.seeknetusa.com/en/blog/web-marketing-en/figma-update-2025-sites-draw-make/",
-      "logo": "https://www.google.com/s2/favicons?domain=www.seeknetusa.com&sz=64"
+      "company": "Framer",
+      "abbreviation": "FR",
+      "title": "February Update: Flow effect support",
+      "url": "https://www.framer.com/",
+      "logo": "https://www.google.com/s2/favicons?domain=www.framer.com&sz=64"
+    },
+    {
+      "company": "Axure Software Solutions",
+      "abbreviation": "AX",
+      "title": "Better digital experiences for UX designers",
+      "url": "https://axure.com/",
+      "logo": "https://www.google.com/s2/favicons?domain=axure.com&sz=64"
+    },
+    {
+      "company": "Framer",
+      "abbreviation": "FR",
+      "title": "3D Transforms feature",
+      "url": "https://www.framer.com/updates/3d-transforms",
+      "logo": "https://www.google.com/s2/favicons?domain=www.framer.com&sz=64"
     }
   ],
-  "funding": [],
-  "partnerships": [],
-  "market_signals": [],
+  "funding": [
+    {
+      "company": "Framer",
+      "abbreviation": "FR",
+      "title": "raised Series D",
+      "amount": "$100M",
+      "url": "https://techstartups.com/2025/08/28/framer-raises-100m-series-d-funding-hits-2b-valuation-as-no-code-demand-surges/",
+      "logo": "https://www.google.com/s2/favicons?domain=techstartups.com&sz=64"
+    },
+    {
+      "company": "Miro",
+      "abbreviation": "MI",
+      "title": "raised Series E",
+      "amount": "",
+      "url": "https://miro.com/",
+      "logo": "https://www.google.com/s2/favicons?domain=miro.com&sz=64"
+    },
+    {
+      "company": "Sketch",
+      "abbreviation": "SK",
+      "title": "raised Series C",
+      "amount": "",
+      "url": "https://sketch.com/",
+      "logo": "https://www.google.com/s2/favicons?domain=sketch.com&sz=64"
+    },
+    {
+      "company": "Framer",
+      "abbreviation": "FR",
+      "title": "raised Series C",
+      "amount": "",
+      "url": "https://framer.com/",
+      "logo": "https://www.google.com/s2/favicons?domain=framer.com&sz=64"
+    },
+    {
+      "company": "Axure Software Solutions",
+      "abbreviation": "AX",
+      "title": "raised Series B",
+      "amount": "",
+      "url": "https://axure.com/",
+      "logo": "https://www.google.com/s2/favicons?domain=axure.com&sz=64"
+    }
+  ],
+  "partnerships": [
+    {
+      "company": "Miro",
+      "abbreviation": "MI",
+      "title": "announced partnership with Figma",
+      "url": "https://miro.com/",
+      "logo": "https://www.google.com/s2/favicons?domain=miro.com&sz=64"
+    },
+    {
+      "company": "Sketch",
+      "abbreviation": "SK",
+      "title": "announced partnership with Adobe",
+      "url": "https://sketch.com/",
+      "logo": "https://www.google.com/s2/favicons?domain=sketch.com&sz=64"
+    },
+    {
+      "company": "Framer",
+      "abbreviation": "FR",
+      "title": "announced partnership with Shopify",
+      "url": "https://framer.com/",
+      "logo": "https://www.google.com/s2/favicons?domain=framer.com&sz=64"
+    },
+    {
+      "company": "Axure Software Solutions",
+      "abbreviation": "AX",
+      "title": "announced partnership with Microsoft",
+      "url": "https://axure.com/",
+      "logo": "https://www.google.com/s2/favicons?domain=axure.com&sz=64"
+    },
+    {
+      "company": "Framer",
+      "abbreviation": "FR",
+      "title": "announced partnership with Webflow",
+      "url": "https://framer.com/",
+      "logo": "https://www.google.com/s2/favicons?domain=framer.com&sz=64"
+    }
+  ],
+  "market_signals": [
+    {
+      "company": "Miro",
+      "abbreviation": "MI",
+      "title": "expanding to enterprise market",
+      "description": "AI Innovation Workspace for large teams",
+      "url": "https://miro.com/blog/whats-new-january-2026/",
+      "logo": "https://www.google.com/s2/favicons?domain=miro.com&sz=64"
+    },
+    {
+      "company": "Sketch",
+      "abbreviation": "SK",
+      "title": "pivoting to web-based tools",
+      "description": "Redesigned web app and new prototyping features",
+      "url": "https://sketch.com/blog/prototyping-improvements-and-a-new-way-to-export-assets-directly-from-cloud-whats-new-in-sketch",
+      "logo": "https://www.google.com/s2/favicons?domain=sketch.com&sz=64"
+    },
+    {
+      "company": "Framer",
+      "abbreviation": "FR",
+      "title": "scaling no-code platform",
+      "description": "$2B valuation and $100M Series D funding",
+      "url": "https://techstartups.com/2025/08/28/framer-raises-100m-series-d-funding-hits-2b-valuation-as-no-code-demand-surges/",
+      "logo": "https://www.google.com/s2/favicons?domain=techstartups.com&sz=64"
+    },
+    {
+      "company": "Axure Software Solutions",
+      "abbreviation": "AX",
+      "title": "focusing on UX designers",
+      "description": "Better digital experiences for UX teams",
+      "url": "https://axure.com/",
+      "logo": "https://www.google.com/s2/favicons?domain=axure.com&sz=64"
+    },
+    {
+      "company": "Framer",
+      "abbreviation": "FR",
+      "title": "enhancing 3D capabilities",
+      "description": "3D Transforms feature for richer prototypes",
+      "url": "https://www.framer.com/updates/3d-transforms",
+      "logo": "https://www.google.com/s2/favicons?domain=www.framer.com&sz=64"
+    }
+  ],
   "market_opportunities": [
-    "Growing demand for AI-powered design tools (72% designer adoption)",
-    "Expansion of no-code solutions for website/app prototyping",
-    "APAC market growth for collaborative design platforms"
+    "Growing demand for no-code design tools",
+    "Enterprise adoption of collaborative design platforms",
+    "Integration of AI in design workflows",
+    "Expansion into 3D and immersive design",
+    "Web-based design tools for remote teams"
   ],
   "competitive_risks": [
-    "Adobe's ecosystem lock-in with Creative Cloud",
-    "Canva's dominance in entry-level/social media design",
-    "Rapid commoditization of generative AI features across tools"
+    "Framer's rapid growth and $2B valuation",
+    "Miro's dominance in collaborative whiteboarding",
+    "Sketch's strong foothold in professional design",
+    "Axure's focus on UX and enterprise needs",
+    "Increasing competition in no-code design space"
   ],
   "action_steps": [
     {
       "step": 1,
-      "title": "Accelerate AI prototyping capabilities"
+      "title": "Enhance AI capabilities in Figma to compete with Miro"
     },
     {
       "step": 2,
-      "title": "Develop enterprise-grade collaboration features"
+      "title": "Develop more advanced prototyping features to match Sketch"
     },
     {
       "step": 3,
-      "title": "Create seamless Adobe-to-Figma migration tools"
+      "title": "Explore partnerships with no-code platforms like Webflow"
     },
     {
       "step": 4,
-      "title": "Expand APAC-focused localization and support"
+      "title": "Invest in 3D design tools to compete with Framer"
     },
     {
       "step": 5,
-      "title": "Build Canva-style templates for non-designers"
+      "title": "Focus on enterprise needs to counter Axure's strengths"
     }
   ],
-  "persisted_at": "2026-03-07T22:45:59.487756+00:00"
+  "persisted_at": "2026-03-07T23:18:03.264465+00:00"
 }
 
 ================================================================================
-END OF TEST
+TOTAL TIME: 142.0s
 ================================================================================

@@ -1,4 +1,7 @@
+import json
 import os
+from datetime import datetime, timezone
+from pathlib import Path
 from typing import Optional
 
 from dotenv import load_dotenv
@@ -175,10 +178,26 @@ def hello():
     return {"message": "MarketShift API is running."}
 
 
+RESULTS_PATH = Path(__file__).parent / "data" / "results.json"
+
+
+@app.get("/pipeline/results")
+def get_pipeline_results():
+    if not RESULTS_PATH.exists():
+        raise HTTPException(status_code=404, detail="No pipeline results found.")
+    return json.loads(RESULTS_PATH.read_text(encoding="utf-8"))
+
+
 @app.post("/pipeline", response_model=PipelineResponse)
 def pipeline(request: PipelineRequest):
     if not request.url.strip():
         raise HTTPException(status_code=400, detail="url must not be empty.")
     from agents.orchestrator import run_pipeline
     result = run_pipeline(request.url.strip())
-    return result
+
+    RESULTS_PATH.parent.mkdir(parents=True, exist_ok=True)
+    payload = result if isinstance(result, dict) else result.model_dump()
+    payload["persisted_at"] = datetime.now(timezone.utc).isoformat()
+    RESULTS_PATH.write_text(json.dumps(payload, indent=2), encoding="utf-8")
+
+    return payload

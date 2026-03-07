@@ -13,6 +13,7 @@ News items include title, url, highlights, and logo (favicon URL).
 """
 
 import os
+from concurrent.futures import ThreadPoolExecutor
 from urllib.parse import urlparse
 
 from dotenv import load_dotenv
@@ -71,7 +72,7 @@ def web_search_tool(query: str) -> list[dict]:
         query,
         category="company",
         type="auto",
-        num_results=5,
+        num_results=3,
         highlights={"num_sentences": 2, "highlights_per_url": 1},
     )
     return [
@@ -90,7 +91,7 @@ def product_hunt_tool(query: str) -> list[dict]:
     results = exa.search_and_contents(
         f"{query} site:producthunt.com",
         type="auto",
-        num_results=5,
+        num_results=3,
         highlights={"num_sentences": 2, "highlights_per_url": 1},
     )
     return [
@@ -105,62 +106,34 @@ def product_hunt_tool(query: str) -> list[dict]:
 
 @tool
 def news_tool(query: str) -> list[dict]:
-    """Fetch recent news about the query (big moves: funding, launches, partnerships, expansion)."""
+    """Fetch recent news about the query (big moves: funding, launches, partnerships)."""
     seen_urls: set[str] = set()
     merged: list[dict] = []
 
     # Main news query
-    for item in _exa_news_search(query, num_results=8):
+    for item in _exa_news_search(query, num_results=5):
         if item["url"] not in seen_urls:
             seen_urls.add(item["url"])
             merged.append(item)
 
-    # Targeted queries for big moves (cap total to avoid rate limits)
-    for extra_query in [
-        f"{query} funding round series",
-        f"{query} product launch partnership",
-        f"{query} expansion region US EU APAC",
-    ]:
-        if len(merged) >= 15:
+    # One extra query for funding (trimmed for speed)
+    for item in _exa_news_search(f"{query} funding round series", num_results=3):
+        if item["url"] not in seen_urls:
+            seen_urls.add(item["url"])
+            merged.append(item)
+        if len(merged) >= 10:
             break
-        for item in _exa_news_search(extra_query, num_results=4):
-            if item["url"] not in seen_urls:
-                seen_urls.add(item["url"])
-                merged.append(item)
-                if len(merged) >= 15:
-                    break
 
-    return merged[:15]
+    return merged[:10]
 
 
 # ---------------------------------------------------------------------------
 # Per-competitor news gathering
 # ---------------------------------------------------------------------------
 
-def _competitor_news(competitor_name: str, max_items: int = 6) -> list[dict]:
-    """Fetch news about a single competitor (funding, launches, partnerships)."""
-    seen_urls: set[str] = set()
-    merged: list[dict] = []
-
-    for item in _exa_news_search(competitor_name, num_results=4):
-        if item["url"] not in seen_urls:
-            seen_urls.add(item["url"])
-            merged.append(item)
-
-    for extra in [
-        f"{competitor_name} funding round",
-        f"{competitor_name} product launch partnership",
-    ]:
-        if len(merged) >= max_items:
-            break
-        for item in _exa_news_search(extra, num_results=3):
-            if item["url"] not in seen_urls:
-                seen_urls.add(item["url"])
-                merged.append(item)
-                if len(merged) >= max_items:
-                    break
-
-    return merged[:max_items]
+def _competitor_news(competitor_name: str, max_items: int = 3) -> list[dict]:
+    """Fetch news about a single competitor (single query for speed)."""
+    return _exa_news_search(competitor_name, num_results=max_items)
 
 
 # ---------------------------------------------------------------------------
@@ -171,19 +144,28 @@ def _gather(inputs: dict) -> dict:
     query = inputs["query"]
     competitors = inputs.get("competitors", [])
 
-    all_news: list[dict] = []
-    if competitors:
-        for comp in competitors:
-            comp_name = comp.get("name", "")
-            if comp_name:
-                all_news.extend(_competitor_news(comp_name))
-    else:
-        all_news = news_tool.invoke({"query": query})
+    def get_news():
+        if competitors:
+            out = []
+            for c in competitors[:3]:  # cap at 3 for speed
+                comp_name = c.get("name", "")
+                if comp_name:
+                    out.extend(_competitor_news(comp_name, max_items=3))
+            return out
+        return news_tool.invoke({"query": query})
+
+    with ThreadPoolExecutor(max_workers=3) as ex:
+        f_web = ex.submit(web_search_tool.invoke, {"query": query})
+        f_ph = ex.submit(product_hunt_tool.invoke, {"query": query})
+        f_news = ex.submit(get_news)
+        web = f_web.result()
+        product_hunt = f_ph.result()
+        all_news = f_news.result()
 
     return {
         **inputs,
-        "web": web_search_tool.invoke({"query": query}),
-        "product_hunt": product_hunt_tool.invoke({"query": query}),
+        "web": web,
+        "product_hunt": product_hunt,
         "news": all_news,
     }
 
