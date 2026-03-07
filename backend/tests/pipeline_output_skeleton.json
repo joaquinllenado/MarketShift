@@ -1,0 +1,54 @@
+{
+  "query": "",
+  "product_announcements": [
+    {
+      "company": "",
+      "abbreviation": "",
+      "title": "",
+      "url": "",
+      "logo": ""
+    }
+  ],
+  "funding": [
+    {
+      "company": "",
+      "abbreviation": "",
+      "title": "",
+      "amount": "",
+      "url": "",
+      "logo": ""
+    }
+  ],
+  "partnerships": [
+    {
+      "company": "",
+      "abbreviation": "",
+      "title": "",
+      "url": "",
+      "logo": ""
+    }
+  ],
+  "market_signals": [
+    {
+      "company": "",
+      "abbreviation": "",
+      "title": "",
+      "description": "",
+      "url": "",
+      "logo": ""
+    }
+  ],
+  "market_opportunities": [
+    ""
+  ],
+  "competitive_risks": [
+    ""
+  ],
+  "action_steps": [
+    {
+      "step": 1,
+      "title": ""
+    }
+  ],
+  "persisted_at": ""
+}
