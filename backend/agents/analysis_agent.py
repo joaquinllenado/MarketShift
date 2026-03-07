@@ -67,7 +67,7 @@ exact structure:
       "company": "<full company name>",
       "abbreviation": "<2-letter abbreviation>",
       "title": "<e.g. 'raised Series B'>",
-      "amount": "<e.g. '$125M', or '' if unknown>",
+      "amount": "<e.g. '$125M', or 'Undisclosed' if unknown>",
       "url": "<source url>"
     }
   ],
@@ -217,6 +217,10 @@ def _analyse(inputs: dict) -> dict:
     result = {}
     for key, default in _EMPTY_RESULT.items():
         result[key] = parsed.get(key, default)
+
+    for item in result.get("funding", []):
+        if not item.get("amount"):
+            item["amount"] = "Undisclosed"
 
     _inject_logos(result.get("product_announcements", []))
     _inject_logos(result.get("funding", []))
