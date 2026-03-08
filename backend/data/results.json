@@ -1,12 +1,8 @@
 {
-  "query": "RC Cola International, PepsiCo, Dr Pepper Snapple Group, Keurig Dr Pepper, Monster Beverage Corporation global non-alcoholic beverage companies",
-  "product_name": "Coca-Cola",
-  "product_summary": "A global beverage company offering a variety of soft drinks and sponsorships.",
+  "query": "PepsiCo, Dr Pepper Snapple Group, Keurig Dr Pepper, Red Bull, Monster Beverage Corporation global non-alcoholic beverage companies",
+  "product_name": "The Coca-Cola Company",
+  "product_summary": "A global beverage company with a portfolio of 32 billion-dollar brands, including Coca-Cola.",
   "competitors": [
-    {
-      "name": "RC Cola International",
-      "url": "https://www.rccolainternational.com"
-    },
     {
       "name": "PepsiCo",
       "url": "https://www.pepsico.com"
@@ -18,6 +14,10 @@
     {
       "name": "Keurig Dr Pepper",
       "url": "https://www.keurigdrpepper.com"
+    },
+    {
+      "name": "Red Bull",
+      "url": "https://www.redbull.com"
     },
     {
       "name": "Monster Beverage Corporation",
@@ -33,190 +33,190 @@
       "logo": "https://www.google.com/s2/favicons?domain=www.producthunt.com&sz=64"
     },
     {
+      "company": "Cuzen",
+      "abbreviation": "CU",
+      "title": "Introduced Matcha Starter Kit",
+      "url": "https://www.producthunt.com/products/cuzen-matcha-starter-kit",
+      "logo": "https://www.google.com/s2/favicons?domain=www.producthunt.com&sz=64"
+    },
+    {
       "company": "PepsiCo",
       "abbreviation": "PE",
-      "title": "Rebranded with new logo and tagline",
+      "title": "Rebranded with new logo and identity",
       "url": "https://amp.fastcompany.com/91432245/pepsico-rebrand-health-food",
       "logo": "https://www.google.com/s2/favicons?domain=amp.fastcompany.com&sz=64"
     },
     {
-      "company": "LaCroix",
-      "abbreviation": "LA",
-      "title": "Introduced LaCroix LaCola",
-      "url": "https://www.producthunt.com/products/lacroix",
-      "logo": "https://www.google.com/s2/favicons?domain=www.producthunt.com&sz=64"
+      "company": "Snapple",
+      "abbreviation": "SN",
+      "title": "Partnered with SOUR PATCH KIDS for flavored collaboration",
+      "url": "https://snapple.com/",
+      "logo": "https://www.google.com/s2/favicons?domain=snapple.com&sz=64"
     },
     {
-      "company": "RC Cola International",
-      "abbreviation": "RC",
-      "title": "Expanded distribution rights in over 100 countries",
-      "url": "https://business.inquirer.net/383099/yaos-macay-gains-global-operations-of-rc-cola-after-p2-5-b-takeover",
-      "logo": "https://www.google.com/s2/favicons?domain=business.inquirer.net&sz=64"
-    },
-    {
-      "company": "Monster Beverage Corporation",
-      "abbreviation": "MO",
-      "title": "Launched new energy drink variant",
-      "url": "https://www.monsterbevcorp.com/",
-      "logo": "https://www.google.com/s2/favicons?domain=www.monsterbevcorp.com&sz=64"
+      "company": "Keurig Dr Pepper",
+      "abbreviation": "KD",
+      "title": "Expanded portfolio with acquisition of Dr Pepper Snapple Group",
+      "url": "https://www.cspdailynews.com/beverages/keurig-completes-acquisition-dr-pepper-snapple-group",
+      "logo": "https://www.google.com/s2/favicons?domain=www.cspdailynews.com&sz=64"
     }
   ],
   "funding": [
     {
-      "company": "RC Cola International",
-      "abbreviation": "RC",
-      "title": "Acquired by Macay Holdings for $2.5B",
-      "amount": "$2.5B",
-      "url": "https://business.inquirer.net/383099/yaos-macay-gains-global-operations-of-rc-cola-after-p2-5-b-takeover",
-      "logo": "https://www.google.com/s2/favicons?domain=business.inquirer.net&sz=64"
-    },
-    {
       "company": "Keurig Dr Pepper",
       "abbreviation": "KD",
-      "title": "Raised undisclosed funding for JDE Peet\u2019s Acquisition",
+      "title": "Reported Q4 2025 earnings growth",
       "amount": "Undisclosed",
-      "url": "https://www.keurigdrpepper.com/",
-      "logo": "https://www.google.com/s2/favicons?domain=www.keurigdrpepper.com&sz=64"
+      "url": "https://www.prnewswire.com/news-releases/keurig-dr-pepper-reports-q4-and-full-year-2025-results-and-provides-2026-outlook-302695312.html",
+      "logo": "https://www.google.com/s2/favicons?domain=www.prnewswire.com&sz=64"
     },
     {
       "company": "PepsiCo",
       "abbreviation": "PE",
-      "title": "Reported strong Q4 2025 earnings",
-      "amount": "$29.34B",
+      "title": "Reported Q4 2025 earnings growth",
+      "amount": "$29.34 billion",
       "url": "https://www.cnbc.com/2026/02/03/pepsico-pep-q4-2025-earnings.html/",
       "logo": "https://www.google.com/s2/favicons?domain=www.cnbc.com&sz=64"
     },
     {
+      "company": "Keurig Dr Pepper",
+      "abbreviation": "KD",
+      "title": "Completed acquisition of Dr Pepper Snapple Group",
+      "amount": "Undisclosed",
+      "url": "https://www.cspdailynews.com/beverages/keurig-completes-acquisition-dr-pepper-snapple-group",
+      "logo": "https://www.google.com/s2/favicons?domain=www.cspdailynews.com&sz=64"
+    },
+    {
       "company": "Dr Pepper Snapple Group",
-      "abbreviation": "DP",
+      "abbreviation": "DS",
       "title": "Merged with Keurig Green Mountain",
       "amount": "Undisclosed",
-      "url": "https://en.wikipedia.org/wiki/Keurig_Dr_Pepper",
+      "url": "https://en.wikipedia.org/wiki/Dr_Pepper_Snapple_Group",
       "logo": "https://www.google.com/s2/favicons?domain=en.wikipedia.org&sz=64"
     },
     {
-      "company": "Monster Beverage Corporation",
-      "abbreviation": "MO",
-      "title": "Raised Series A funding for expansion",
-      "amount": "$100M",
-      "url": "https://www.monsterbevcorp.com/",
-      "logo": "https://www.google.com/s2/favicons?domain=www.monsterbevcorp.com&sz=64"
+      "company": "Keurig Dr Pepper",
+      "abbreviation": "KD",
+      "title": "Expanded market presence post-merger",
+      "amount": "Undisclosed",
+      "url": "https://www.keurigdrpepper.com/",
+      "logo": "https://www.google.com/s2/favicons?domain=www.keurigdrpepper.com&sz=64"
     }
   ],
   "partnerships": [
     {
-      "company": "RC Cola International",
-      "abbreviation": "RC",
-      "title": "Partnered with Faragalla Group",
-      "url": "https://rccolainternational.com/",
-      "logo": "https://www.google.com/s2/favicons?domain=rccolainternational.com&sz=64"
+      "company": "Snapple",
+      "abbreviation": "SN",
+      "title": "Announced partnership with SOUR PATCH KIDS",
+      "url": "https://snapple.com/",
+      "logo": "https://www.google.com/s2/favicons?domain=snapple.com&sz=64"
     },
     {
       "company": "Keurig Dr Pepper",
       "abbreviation": "KD",
-      "title": "Collaborated with Labatt Breweries of Canada",
-      "url": "https://keurigdrpepper.ca/",
-      "logo": "https://www.google.com/s2/favicons?domain=keurigdrpepper.ca&sz=64"
+      "title": "Acquired Dr Pepper Snapple Group",
+      "url": "https://www.cspdailynews.com/beverages/keurig-completes-acquisition-dr-pepper-snapple-group",
+      "logo": "https://www.google.com/s2/favicons?domain=www.cspdailynews.com&sz=64"
     },
     {
       "company": "PepsiCo",
       "abbreviation": "PE",
-      "title": "Announced partnership with Kraft Heinz",
-      "url": "https://keurigdrpepper.ca/",
-      "logo": "https://www.google.com/s2/favicons?domain=keurigdrpepper.ca&sz=64"
+      "title": "Collaborated with various brands under its portfolio",
+      "url": "https://www.pepsico.com/en/",
+      "logo": "https://www.google.com/s2/favicons?domain=www.pepsico.com&sz=64"
     },
     {
       "company": "Dr Pepper Snapple Group",
-      "abbreviation": "DP",
+      "abbreviation": "DS",
       "title": "Merged with Keurig Green Mountain",
-      "url": "https://en.wikipedia.org/wiki/Keurig_Dr_Pepper",
+      "url": "https://en.wikipedia.org/wiki/Dr_Pepper_Snapple_Group",
       "logo": "https://www.google.com/s2/favicons?domain=en.wikipedia.org&sz=64"
     },
     {
-      "company": "Monster Beverage Corporation",
-      "abbreviation": "MO",
-      "title": "Partnered with a leading sports league",
-      "url": "https://www.monsterbevcorp.com/",
-      "logo": "https://www.google.com/s2/favicons?domain=www.monsterbevcorp.com&sz=64"
+      "company": "Keurig Dr Pepper",
+      "abbreviation": "KD",
+      "title": "Integrated Dr Pepper Snapple Group into its operations",
+      "url": "https://www.keurigdrpepper.com/",
+      "logo": "https://www.google.com/s2/favicons?domain=www.keurigdrpepper.com&sz=64"
     }
   ],
   "market_signals": [
     {
-      "company": "RC Cola International",
-      "abbreviation": "RC",
-      "title": "Expanding global operations",
-      "description": "Acquired by Macay Holdings to strengthen distribution in over 100 countries.",
-      "url": "https://asiafoodbeverages.com/macay-holdings-completes-takeover-of-rc-cola/",
-      "logo": "https://www.google.com/s2/favicons?domain=asiafoodbeverages.com&sz=64"
-    },
-    {
-      "company": "PepsiCo",
-      "abbreviation": "PE",
-      "title": "Rebranding towards health-focused products",
-      "description": "New logo and tagline reflect a shift towards healthier food and beverage options.",
-      "url": "https://amp.fastcompany.com/91432245/pepsico-rebrand-health-food",
-      "logo": "https://www.google.com/s2/favicons?domain=amp.fastcompany.com&sz=64"
-    },
-    {
       "company": "Keurig Dr Pepper",
       "abbreviation": "KD",
-      "title": "Expanding into craft cocktails",
-      "description": "Launched Drinkworks drinkmaker to tap into the home entertainment market.",
+      "title": "Expanding into craft cocktail market",
+      "description": "Launched Drinkworks drinkmaker for home craft cocktails",
       "url": "https://www.producthunt.com/products/drinkworks",
       "logo": "https://www.google.com/s2/favicons?domain=www.producthunt.com&sz=64"
     },
     {
-      "company": "Dr Pepper Snapple Group",
-      "abbreviation": "DP",
-      "title": "Merged to form Keurig Dr Pepper",
-      "description": "Combined forces with Keurig Green Mountain to expand product portfolio.",
-      "url": "https://en.wikipedia.org/wiki/Keurig_Dr_Pepper",
-      "logo": "https://www.google.com/s2/favicons?domain=en.wikipedia.org&sz=64"
+      "company": "PepsiCo",
+      "abbreviation": "PE",
+      "title": "Rebranding to focus on health and sustainability",
+      "description": "Introduced new logo and brand identity",
+      "url": "https://amp.fastcompany.com/91432245/pepsico-rebrand-health-food",
+      "logo": "https://www.google.com/s2/favicons?domain=amp.fastcompany.com&sz=64"
     },
     {
-      "company": "Monster Beverage Corporation",
-      "abbreviation": "MO",
-      "title": "Entering new energy drink segments",
-      "description": "Launching new variants to capture diverse consumer preferences.",
-      "url": "https://www.monsterbevcorp.com/",
-      "logo": "https://www.google.com/s2/favicons?domain=www.monsterbevcorp.com&sz=64"
+      "company": "Snapple",
+      "abbreviation": "SN",
+      "title": "Targeting younger demographics with flavored collaborations",
+      "description": "Partnered with SOUR PATCH KIDS for new product line",
+      "url": "https://snapple.com/",
+      "logo": "https://www.google.com/s2/favicons?domain=snapple.com&sz=64"
+    },
+    {
+      "company": "Keurig Dr Pepper",
+      "abbreviation": "KD",
+      "title": "Strengthening market position through acquisitions",
+      "description": "Completed acquisition of Dr Pepper Snapple Group",
+      "url": "https://www.cspdailynews.com/beverages/keurig-completes-acquisition-dr-pepper-snapple-group",
+      "logo": "https://www.google.com/s2/favicons?domain=www.cspdailynews.com&sz=64"
+    },
+    {
+      "company": "Cuzen",
+      "abbreviation": "CU",
+      "title": "Entering the matcha market with innovative products",
+      "description": "Launched Matcha Starter Kit for home use",
+      "url": "https://www.producthunt.com/products/cuzen-matcha-starter-kit",
+      "logo": "https://www.google.com/s2/favicons?domain=www.producthunt.com&sz=64"
     }
   ],
   "market_opportunities": [
-    "Growing demand for health-focused beverages presents an opportunity for product innovation.",
-    "Expansion into emerging markets can drive growth for established brands.",
-    "Home entertainment and craft beverage segments are ripe for disruption.",
-    "Partnerships with sports leagues can enhance brand visibility and loyalty.",
-    "Sustainability initiatives can differentiate brands in a crowded market."
+    "Growing demand for craft and artisanal beverages at home",
+    "Expansion into health-focused and sustainable beverage options",
+    "Partnerships with popular candy brands to attract younger consumers",
+    "Innovation in single-serve and convenient beverage solutions",
+    "Increasing interest in functional and premium beverages like matcha"
   ],
   "competitive_risks": [
-    "Intense competition from health-focused startups could erode market share.",
-    "Regulatory pressures on sugar content may impact traditional soda sales.",
-    "Supply chain disruptions could affect global distribution capabilities.",
-    "Consumer shift towards local and artisanal brands may challenge global players.",
-    "High R&D costs for innovation could strain profitability."
+    "Intense competition from established players like Coca-Cola and PepsiCo",
+    "High costs associated with mergers and acquisitions",
+    "Dependence on consumer trends towards health and sustainability",
+    "Potential supply chain disruptions affecting product availability",
+    "Regulatory challenges in different markets"
   ],
   "action_steps": [
     {
       "step": 1,
-      "title": "Invest in R&D for health-focused beverage variants."
+      "title": "Invest in R&D for innovative beverage solutions"
     },
     {
       "step": 2,
-      "title": "Explore strategic partnerships to expand into emerging markets."
+      "title": "Explore strategic partnerships to expand market reach"
     },
     {
       "step": 3,
-      "title": "Enhance sustainability initiatives to appeal to eco-conscious consumers."
+      "title": "Focus on sustainability and health-centric product lines"
     },
     {
       "step": 4,
-      "title": "Monitor regulatory changes and adapt product formulations accordingly."
+      "title": "Enhance digital and e-commerce capabilities for direct consumer engagement"
     },
     {
       "step": 5,
-      "title": "Leverage digital marketing to engage younger demographics."
+      "title": "Monitor competitor moves and adapt strategies accordingly"
     }
   ],
-  "persisted_at": "2026-03-08T00:50:59.997350+00:00"
+  "persisted_at": "2026-03-08T01:11:02.335634+00:00"
 }

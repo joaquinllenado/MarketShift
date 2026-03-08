@@ -33,10 +33,20 @@ def _aggregate_and_persist(inputs: dict) -> dict:
     existing: list = []
     if DATA_FILE.exists():
         try:
-            existing = json.loads(DATA_FILE.read_text())
+            loaded = json.loads(DATA_FILE.read_text())
+            # File may be a single dict (from main.py pipeline overwrite) or a list of records
+            if isinstance(loaded, dict):
+                existing = [loaded]
+            elif isinstance(loaded, list):
+                existing = [x for x in loaded if isinstance(x, dict)]
+            else:
+                existing = []
         except (json.JSONDecodeError, ValueError):
             logger.warning("[sub_agent_2] Existing %s was corrupt — starting fresh", DATA_FILE)
             existing = []
+    # Defensive: ensure we always have a list (e.g. if loaded was malformed or list had non-dict items)
+    if not isinstance(existing, list):
+        existing = [existing] if isinstance(existing, dict) else []
 
     raw_counts = {k: len(inputs.get(k, [])) for k in ("web", "product_hunt", "news")}
     logger.info("[sub_agent_2] Raw item counts: %s", raw_counts)
