@@ -17,8 +17,10 @@ Output: same dict with the 7 dashboard keys added
 """
 
 import json
+import logging
 import os
 import re
+import time
 from urllib.parse import urlparse
 
 from dotenv import load_dotenv
@@ -26,6 +28,8 @@ from langchain_core.runnables import RunnableLambda
 from langchain_openai import ChatOpenAI
 
 load_dotenv()
+
+logger = logging.getLogger(__name__)
 
 FAVICON_BASE = "https://www.google.com/s2/favicons?domain={domain}&sz=64"
 
@@ -171,8 +175,11 @@ def _inject_logos(items: list[dict]) -> list[dict]:
 
 def _analyse(inputs: dict) -> dict:
     aggregated = inputs.get("aggregated", [])
+    stage_start = time.perf_counter()
+    logger.info("[analysis] Starting LLM classification of %d aggregated items", len(aggregated))
 
     if not aggregated:
+        logger.warning("[analysis] No aggregated items — returning empty result")
         return {**inputs, **_EMPTY_RESULT}
 
     items_for_llm = [
@@ -202,6 +209,7 @@ def _analyse(inputs: dict) -> dict:
 
     user_msg = "\n".join(context_parts)
 
+    logger.info("[analysis] Calling LLM for classification …")
     response = llm.invoke([
         {"role": "system", "content": SYSTEM_PROMPT},
         {"role": "user", "content": user_msg},
@@ -212,6 +220,7 @@ def _analyse(inputs: dict) -> dict:
     try:
         parsed = _extract_json(cleaned)
     except (json.JSONDecodeError, ValueError):
+        logger.warning("[analysis] LLM returned unparseable JSON — using empty fallback")
         parsed = _EMPTY_RESULT
 
     result = {}
@@ -226,6 +235,14 @@ def _analyse(inputs: dict) -> dict:
     _inject_logos(result.get("funding", []))
     _inject_logos(result.get("partnerships", []))
     _inject_logos(result.get("market_signals", []))
+
+    elapsed = time.perf_counter() - stage_start
+    logger.info("[analysis] Done in %.1f s — announcements=%d, funding=%d, partnerships=%d, signals=%d",
+                elapsed,
+                len(result.get("product_announcements", [])),
+                len(result.get("funding", [])),
+                len(result.get("partnerships", [])),
+                len(result.get("market_signals", [])))
 
     return {**inputs, **result}
 

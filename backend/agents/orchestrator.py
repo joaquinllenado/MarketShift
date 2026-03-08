@@ -24,11 +24,16 @@ GMI Cloud / LangChain config (used by intake_agent & analysis_agent):
     )
 """
 
+import logging
+import time
+
 from .intake_agent import intake_agent
 from .sub_agent_1 import sub_agent_1
 from .sub_agent_2 import sub_agent_2
 from .analysis_agent import analysis_agent
 from .sub_agent_3 import sub_agent_3
+
+logger = logging.getLogger(__name__)
 
 pipeline = intake_agent | sub_agent_1 | sub_agent_2 | analysis_agent | sub_agent_3
 
@@ -39,4 +44,15 @@ def run_pipeline(url: str) -> dict:
     Accepts a product URL. The intake_agent scrapes it, discovers
     competitors, and the rest of the pipeline researches them.
     """
-    return pipeline.invoke({"url": url})
+    logger.info("=" * 60)
+    logger.info("PIPELINE START — url=%s", url)
+    logger.info("=" * 60)
+    start = time.perf_counter()
+
+    result = pipeline.invoke({"url": url})
+
+    elapsed = time.perf_counter() - start
+    logger.info("=" * 60)
+    logger.info("PIPELINE COMPLETE — %.1f s total", elapsed)
+    logger.info("=" * 60)
+    return result

@@ -7,15 +7,20 @@ from typing import Optional
 
 from dotenv import load_dotenv
 from exa_py import Exa
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import Response
 from prefect import flow, task
 from pydantic import BaseModel
 
-logger = logging.getLogger(__name__)
-
 load_dotenv()
+
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s  %(levelname)-8s  %(name)s  %(message)s",
+    datefmt="%Y-%m-%d %H:%M:%S",
+)
+logger = logging.getLogger(__name__)
 
 app = FastAPI(title="MarketShift API")
 
@@ -25,6 +30,18 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+
+@app.middleware("http")
+async def log_requests(request: Request, call_next):
+    import time as _time
+
+    start = _time.perf_counter()
+    logger.info("→  %s %s", request.method, request.url.path)
+    response = await call_next(request)
+    elapsed_ms = (_time.perf_counter() - start) * 1000
+    logger.info("←  %s %s  %d  (%.0f ms)", request.method, request.url.path, response.status_code, elapsed_ms)
+    return response
 
 exa = Exa(api_key=os.environ.get("EXA_API_KEY"))
 
@@ -114,6 +131,7 @@ class PipelineResponse(BaseModel):
 
 @task(name="search-companies")
 def search_companies_task(query: str) -> list[CompanyResult]:
+    logger.info("Searching companies for query: %s", query)
     results = exa.search_and_contents(
         query,
         category="company",
@@ -131,11 +149,13 @@ def search_companies_task(query: str) -> list[CompanyResult]:
                 highlights=highlights,
             )
         )
+    logger.info("Found %d companies", len(companies))
     return companies
 
 
 @task(name="scrape-urls")
 def scrape_urls_task(urls: list[str]) -> list[ScrapedResult]:
+    logger.info("Scraping %d URLs: %s", len(urls), urls)
     results = exa.get_contents(urls, text={"max_characters": 5000})
     scraped = []
     for r in results.results:
@@ -146,6 +166,7 @@ def scrape_urls_task(urls: list[str]) -> list[ScrapedResult]:
                 text=r.text or "",
             )
         )
+    logger.info("Scraped %d pages", len(scraped))
     return scraped
 
 
@@ -168,12 +189,14 @@ def research_flow(query: Optional[str], urls: list[str]) -> ResearchResponse:
 
 @app.post("/research", response_model=ResearchResponse)
 def research(request: ResearchRequest):
+    logger.info("Research request — query=%r, urls=%s", request.query, request.urls)
     if not request.query and not request.urls:
         raise HTTPException(
             status_code=400,
             detail="Provide at least a company query or one URL to scrape.",
         )
     result = research_flow(query=request.query, urls=request.urls)
+    logger.info("Research complete — %d companies, %d scraped pages", len(result.companies), len(result.scraped))
     return result
 
 
@@ -188,30 +211,38 @@ RESULTS_PATH = Path(__file__).parent / "data" / "results.json"
 @app.get("/pipeline/results")
 def get_pipeline_results():
     if not RESULTS_PATH.exists():
+        logger.warning("Pipeline results requested but %s does not exist", RESULTS_PATH)
         raise HTTPException(status_code=404, detail="No pipeline results found.")
+    logger.info("Serving cached pipeline results from %s", RESULTS_PATH)
     return json.loads(RESULTS_PATH.read_text(encoding="utf-8"))
 
 
 @app.post("/pipeline", response_model=PipelineResponse)
 def pipeline(request: PipelineRequest):
-    if not request.url.strip():
+    url = request.url.strip()
+    if not url:
         raise HTTPException(status_code=400, detail="url must not be empty.")
+    logger.info("Pipeline started for URL: %s", url)
+
     from agents.orchestrator import run_pipeline
-    result = run_pipeline(request.url.strip())
+    result = run_pipeline(url)
 
     RESULTS_PATH.parent.mkdir(parents=True, exist_ok=True)
     payload = result if isinstance(result, dict) else result.model_dump()
     payload["persisted_at"] = datetime.now(timezone.utc).isoformat()
     RESULTS_PATH.write_text(json.dumps(payload, indent=2), encoding="utf-8")
 
+    logger.info("Pipeline complete — results persisted to %s", RESULTS_PATH)
     return payload
 
 
 @app.post("/pipeline/voice-summary")
 def voice_summary():
     if not RESULTS_PATH.exists():
+        logger.warning("Voice summary requested but no pipeline results exist")
         raise HTTPException(status_code=404, detail="No pipeline results found. Run the pipeline first.")
 
+    logger.info("Generating voice summary from %s", RESULTS_PATH)
     raw = json.loads(RESULTS_PATH.read_text(encoding="utf-8"))
     pipeline_data = raw[-1] if isinstance(raw, list) else raw
 

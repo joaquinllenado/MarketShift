@@ -17,8 +17,10 @@ Output: {
 """
 
 import json
+import logging
 import os
 import re
+import time
 from urllib.parse import urlparse
 
 from dotenv import load_dotenv
@@ -27,6 +29,8 @@ from langchain_core.runnables import RunnableLambda
 from langchain_openai import ChatOpenAI
 
 load_dotenv()
+
+logger = logging.getLogger(__name__)
 
 exa = Exa(api_key=os.environ.get("EXA_API_KEY"))
 
@@ -94,8 +98,11 @@ def _extract_json(raw: str) -> dict:
 
 def _discover_competitors(inputs: dict) -> dict:
     product_url = inputs["url"]
+    stage_start = time.perf_counter()
+    logger.info("[intake] Starting competitor discovery for %s", product_url)
 
     # Step 1: Scrape the product URL to understand what it does
+    logger.info("[intake] Scraping product page …")
     try:
         scraped = exa.get_contents(
             [product_url],
@@ -106,12 +113,15 @@ def _discover_competitors(inputs: dict) -> dict:
         product_text = product_page.text if product_page and product_page.text else ""
         product_title = product_page.title if product_page and product_page.title else product_url
         product_highlights = product_page.highlights if product_page and product_page.highlights else []
+        logger.info("[intake] Scraped product page — title=%r, text_len=%d", product_title, len(product_text))
     except Exception:
+        logger.exception("[intake] Failed to scrape product URL %s — continuing with empty data", product_url)
         product_text = ""
         product_title = product_url
         product_highlights = []
 
     # Step 2: Find similar companies via Exa
+    logger.info("[intake] Searching for similar companies …")
     product_domain = urlparse(product_url).netloc.lower().removeprefix("www.")
     # Build a short brand keyword from the domain for fuzzy self-filtering
     brand_root = product_domain.split(".")[0].replace("-", "").replace("company", "").lower()
@@ -146,7 +156,9 @@ def _discover_competitors(inputs: dict) -> dict:
             for r in similar.results
             if not _is_self(r.url, r.title or "")
         ]
+        logger.info("[intake] Found %d similar companies (after self-filter)", len(similar_companies))
     except Exception:
+        logger.exception("[intake] Exa find_similar failed — continuing with empty list")
         similar_companies = []
 
     # Step 3: Use LLM to pick top 5 competitors and generate context
@@ -163,6 +175,7 @@ def _discover_competitors(inputs: dict) -> dict:
         f"{json.dumps(similar_companies, indent=2)}"
     )
 
+    logger.info("[intake] Calling LLM to select top competitors …")
     response = llm.invoke([
         {"role": "system", "content": SYSTEM_PROMPT},
         {"role": "user", "content": user_msg},
@@ -173,6 +186,7 @@ def _discover_competitors(inputs: dict) -> dict:
     try:
         parsed = _extract_json(cleaned)
     except (json.JSONDecodeError, ValueError):
+        logger.warning("[intake] LLM returned unparseable JSON — using fallback")
         parsed = {
             "product_name": product_title,
             "product_summary": "",
@@ -187,6 +201,11 @@ def _discover_competitors(inputs: dict) -> dict:
 
     competitor_names = ", ".join(c["name"] for c in competitors)
     query = f"{competitor_names} {market_context}".strip()
+
+    elapsed = time.perf_counter() - stage_start
+    comp_names = [c.get("name", "?") for c in competitors]
+    logger.info("[intake] Done in %.1f s — product=%r, competitors=%s, query=%r",
+                elapsed, product_name, comp_names, query)
 
     return {
         "url": product_url,

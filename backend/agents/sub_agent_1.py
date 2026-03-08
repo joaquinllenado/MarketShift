@@ -12,7 +12,9 @@ Returns a dict preserving all upstream keys plus: web, product_hunt, news.
 News items include title, url, highlights, and logo (favicon URL).
 """
 
+import logging
 import os
+import time
 from concurrent.futures import ThreadPoolExecutor
 from urllib.parse import urlparse
 
@@ -22,6 +24,8 @@ from langchain_core.runnables import RunnableLambda
 from langchain_core.tools import tool
 
 load_dotenv()
+
+logger = logging.getLogger(__name__)
 
 exa = Exa(api_key=os.environ.get("EXA_API_KEY"))
 
@@ -143,17 +147,24 @@ def _competitor_news(competitor_name: str, max_items: int = 3) -> list[dict]:
 def _gather(inputs: dict) -> dict:
     query = inputs["query"]
     competitors = inputs.get("competitors", [])
+    stage_start = time.perf_counter()
+    logger.info("[sub_agent_1] Starting data gathering — query=%r, %d competitors", query, len(competitors))
 
     def get_news():
         if competitors:
+            names = [c.get("name", "") for c in competitors[:3]]
+            logger.info("[sub_agent_1] Fetching per-competitor news for: %s", names)
             out = []
-            for c in competitors[:3]:  # cap at 3 for speed
+            for c in competitors[:3]:
                 comp_name = c.get("name", "")
                 if comp_name:
-                    out.extend(_competitor_news(comp_name, max_items=3))
+                    items = _competitor_news(comp_name, max_items=3)
+                    logger.info("[sub_agent_1]   %s → %d news items", comp_name, len(items))
+                    out.extend(items)
             return out
         return news_tool.invoke({"query": query})
 
+    logger.info("[sub_agent_1] Running web / ProductHunt / news searches in parallel …")
     with ThreadPoolExecutor(max_workers=3) as ex:
         f_web = ex.submit(web_search_tool.invoke, {"query": query})
         f_ph = ex.submit(product_hunt_tool.invoke, {"query": query})
@@ -161,6 +172,10 @@ def _gather(inputs: dict) -> dict:
         web = f_web.result()
         product_hunt = f_ph.result()
         all_news = f_news.result()
+
+    elapsed = time.perf_counter() - stage_start
+    logger.info("[sub_agent_1] Done in %.1f s — web=%d, product_hunt=%d, news=%d",
+                elapsed, len(web), len(product_hunt), len(all_news))
 
     return {
         **inputs,

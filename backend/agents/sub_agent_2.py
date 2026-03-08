@@ -15,26 +15,32 @@ a concise summary field alongside the raw data.
 """
 
 import json
+import logging
 from datetime import datetime, timezone
 from pathlib import Path
 
 from langchain_core.runnables import RunnableLambda
 
+logger = logging.getLogger(__name__)
+
 DATA_FILE = Path(__file__).parent.parent / "data" / "results.json"
 
 
 def _aggregate_and_persist(inputs: dict) -> dict:
+    logger.info("[sub_agent_2] Aggregating and deduplicating results …")
     DATA_FILE.parent.mkdir(parents=True, exist_ok=True)
 
-    # Load existing runs
     existing: list = []
     if DATA_FILE.exists():
         try:
             existing = json.loads(DATA_FILE.read_text())
         except (json.JSONDecodeError, ValueError):
+            logger.warning("[sub_agent_2] Existing %s was corrupt — starting fresh", DATA_FILE)
             existing = []
 
-    # Deduplicate across sources by URL
+    raw_counts = {k: len(inputs.get(k, [])) for k in ("web", "product_hunt", "news")}
+    logger.info("[sub_agent_2] Raw item counts: %s", raw_counts)
+
     seen_urls: set[str] = set()
     aggregated: list[dict] = []
     for source_key in ("web", "product_hunt", "news"):
@@ -57,6 +63,9 @@ def _aggregate_and_persist(inputs: dict) -> dict:
 
     existing.append(record)
     DATA_FILE.write_text(json.dumps(existing, indent=2))
+
+    logger.info("[sub_agent_2] %d unique items aggregated (from %d raw), persisted to %s",
+                len(aggregated), sum(raw_counts.values()), DATA_FILE)
 
     return {**inputs, "aggregated": aggregated, "persisted_at": timestamp}
 
