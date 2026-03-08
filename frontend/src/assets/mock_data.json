@@ -1,0 +1,198 @@
+{
+    "query": "Kopa.ai, Askflow AI, Askly, Ami AI, Botique.me AI-powered e-commerce customer support and sales automation tools",
+    "product_announcements": [
+        {
+            "company": "Figma",
+            "abbreviation": "FI",
+            "title": "Launched Figma Sites, Draw, and Make to compete with Canva and Adobe",
+            "url": "https://figma.com/",
+            "logo": "https://www.google.com/s2/favicons?domain=figma.com&sz=64"
+        },
+        {
+            "company": "Adobe",
+            "abbreviation": "AD",
+            "title": "Announced new AI capabilities for Creative Cloud",
+            "url": "https://adobe.com/",
+            "logo": "https://www.google.com/s2/favicons?domain=adobe.com&sz=64"
+        },
+        {
+            "company": "Canva",
+            "abbreviation": "CA",
+            "title": "Introduced AI design tools for enhanced content creation",
+            "url": "https://canva.com/",
+            "logo": "https://www.google.com/s2/favicons?domain=canva.com&sz=64"
+        },
+        {
+            "company": "Kopa.ai",
+            "abbreviation": "KO",
+            "title": "Launched advanced AI shopping assistant features",
+            "url": "https://kopa.ai/",
+            "logo": "https://www.google.com/s2/favicons?domain=kopa.ai&sz=64"
+        },
+        {
+            "company": "Askflow AI",
+            "abbreviation": "AS",
+            "title": "Released AI chatbots mimicking in-store salespeople",
+            "url": "https://askflow.ai/",
+            "logo": "https://www.google.com/s2/favicons?domain=askflow.ai&sz=64"
+        }
+    ],
+    "funding": [
+        {
+            "company": "Kopa.ai",
+            "abbreviation": "KO",
+            "title": "raised Seed round",
+            "amount": "$3.2M",
+            "url": "https://kopa.ai/",
+            "logo": "https://www.google.com/s2/favicons?domain=kopa.ai&sz=64"
+        },
+        {
+            "company": "Askflow AI",
+            "abbreviation": "AS",
+            "title": "raised Pre-Seed round",
+            "amount": "",
+            "url": "https://askflow.ai/",
+            "logo": "https://www.google.com/s2/favicons?domain=askflow.ai&sz=64"
+        },
+        {
+            "company": "Qlode.ai",
+            "abbreviation": "QL",
+            "title": "raised Angel round",
+            "amount": "",
+            "url": "https://qlode.ai/",
+            "logo": "https://www.google.com/s2/favicons?domain=qlode.ai&sz=64"
+        },
+        {
+            "company": "Askly",
+            "abbreviation": "AK",
+            "title": "raised Seed round",
+            "amount": "",
+            "url": "https://askly.me/",
+            "logo": "https://www.google.com/s2/favicons?domain=askly.me&sz=64"
+        },
+        {
+            "company": "Ami AI",
+            "abbreviation": "AM",
+            "title": "raised Series A",
+            "amount": "",
+            "url": "https://meetami.ai/",
+            "logo": "https://www.google.com/s2/favicons?domain=meetami.ai&sz=64"
+        }
+    ],
+    "partnerships": [
+        {
+            "company": "Figma",
+            "abbreviation": "FI",
+            "title": "announced partnership with Microsoft",
+            "url": "https://figma.com/",
+            "logo": "https://www.google.com/s2/favicons?domain=figma.com&sz=64"
+        },
+        {
+            "company": "Adobe",
+            "abbreviation": "AD",
+            "title": "partnered with NVIDIA for AI acceleration",
+            "url": "https://adobe.com/",
+            "logo": "https://www.google.com/s2/favicons?domain=adobe.com&sz=64"
+        },
+        {
+            "company": "Canva",
+            "abbreviation": "CA",
+            "title": "collaborated with Google Workspace",
+            "url": "https://canva.com/",
+            "logo": "https://www.google.com/s2/favicons?domain=canva.com&sz=64"
+        },
+        {
+            "company": "Kopa.ai",
+            "abbreviation": "KO",
+            "title": "formed partnership with Shopify",
+            "url": "https://kopa.ai/",
+            "logo": "https://www.google.com/s2/favicons?domain=kopa.ai&sz=64"
+        },
+        {
+            "company": "Askflow AI",
+            "abbreviation": "AS",
+            "title": "integrated with BigCommerce",
+            "url": "https://askflow.ai/",
+            "logo": "https://www.google.com/s2/favicons?domain=askflow.ai&sz=64"
+        }
+    ],
+    "market_signals": [
+        {
+            "company": "Figma",
+            "abbreviation": "FI",
+            "title": "72% of designers use generative AI tools",
+            "description": "Rapid AI adoption reshaping the design tool landscape",
+            "url": "https://figma.com/",
+            "logo": "https://www.google.com/s2/favicons?domain=figma.com&sz=64"
+        },
+        {
+            "company": "Figma",
+            "abbreviation": "FI",
+            "title": "Dominance in UI/UX market after Adobe XD maintenance shift",
+            "description": "Adobe ceded mainstream UI/UX design market to Figma",
+            "url": "https://figma.com/",
+            "logo": "https://www.google.com/s2/favicons?domain=figma.com&sz=64"
+        },
+        {
+            "company": "Figma",
+            "abbreviation": "FI",
+            "title": "APAC design-led growth strategy",
+            "description": "Expanding into high-growth APAC markets",
+            "url": "https://figma.com/",
+            "logo": "https://www.google.com/s2/favicons?domain=figma.com&sz=64"
+        },
+        {
+            "company": "Adobe",
+            "abbreviation": "AD",
+            "title": "Pivoting to AI-driven design competition",
+            "description": "Investing heavily in AI to regain design market share",
+            "url": "https://adobe.com/",
+            "logo": "https://www.google.com/s2/favicons?domain=adobe.com&sz=64"
+        },
+        {
+            "company": "Canva",
+            "abbreviation": "CA",
+            "title": "Targeting non-designers with simplified tools",
+            "description": "Democratizing design for broader market reach",
+            "url": "https://canva.com/",
+            "logo": "https://www.google.com/s2/favicons?domain=canva.com&sz=64"
+        }
+    ],
+    "market_opportunities": [
+        "AI-powered personalization in e-commerce shopping assistants",
+        "Integration of design tools with shopping agents for immersive product experiences",
+        "Expansion into emerging markets with high digital adoption like APAC",
+        "Partnerships between AI agents and multi-platform e-commerce solutions",
+        "Demand for no-code AI customization in SMB retail segments"
+    ],
+    "competitive_risks": [
+        "Dominant players (Figma/Adobe) expanding AI capabilities into adjacent markets",
+        "Shopify developing native AI shopping features reducing third-party need",
+        "High R&D costs for maintaining competitive AI agent functionality",
+        "Market saturation with undifferentiated AI shopping assistants",
+        "Data privacy regulations limiting AI training data collection"
+    ],
+    "action_steps": [
+        {
+            "step": 1,
+            "title": "Develop AI personalization engine for hyper-targeted shopping recommendations"
+        },
+        {
+            "step": 2,
+            "title": "Pursue partnerships with design tools (Figma/Canva) for visual commerce integration"
+        },
+        {
+            "step": 3,
+            "title": "Expand platform compatibility beyond Shopify to BigCommerce and WooCommerce"
+        },
+        {
+            "step": 4,
+            "title": "Conduct user testing to identify gaps in conversational commerce experiences"
+        },
+        {
+            "step": 5,
+            "title": "Secure strategic funding to accelerate AI model training and market expansion"
+        }
+    ],
+    "persisted_at": "2026-03-07T22:45:40.141359+00:00"
+}

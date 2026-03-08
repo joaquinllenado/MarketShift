@@ -1,5 +1,10 @@
 @import "tailwindcss";
 
+@theme {
+  --font-serif: "Noto Serif", Georgia, serif;
+  --font-mono: "Roboto Mono", "Courier New", monospace;
+}
+
 @keyframes gradientDrift {
   0%, 100% { background-position: 0% 50%; }
   50%       { background-position: 100% 50%; }
@@ -8,13 +13,13 @@
 .gradient-animate {
   background: linear-gradient(
     -45deg,
-    #e0f2fe,
-    #bae6fd,
-    #cffafe,
-    #a5f3fc,
-    #bae6fd,
-    #dbeafe,
-    #ccfbf1
+    #2e1a00,
+    #7a4500,
+    #FF9E13,
+    #ffd080,
+    #FF9E13,
+    #8a5000,
+    #1e1000
   );
   background-size: 400% 400%;
   animation: gradientDrift 10s ease infinite;
