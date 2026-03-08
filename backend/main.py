@@ -1,4 +1,5 @@
 import json
+import logging
 import os
 from datetime import datetime, timezone
 from pathlib import Path
@@ -8,8 +9,11 @@ from dotenv import load_dotenv
 from exa_py import Exa
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import Response
 from prefect import flow, task
 from pydantic import BaseModel
+
+logger = logging.getLogger(__name__)
 
 load_dotenv()
 
@@ -201,3 +205,29 @@ def pipeline(request: PipelineRequest):
     RESULTS_PATH.write_text(json.dumps(payload, indent=2), encoding="utf-8")
 
     return payload
+
+
+@app.post("/pipeline/voice-summary")
+def voice_summary():
+    if not RESULTS_PATH.exists():
+        raise HTTPException(status_code=404, detail="No pipeline results found. Run the pipeline first.")
+
+    raw = json.loads(RESULTS_PATH.read_text(encoding="utf-8"))
+    pipeline_data = raw[-1] if isinstance(raw, list) else raw
+
+    from agents.voice_summary import generate_voice_summary
+    try:
+        audio_bytes = generate_voice_summary(pipeline_data)
+    except Exception as exc:
+        logger.exception("Voice summary generation failed")
+        raise HTTPException(status_code=502, detail=f"Voice summary generation failed: {exc}")
+
+    audio_path = RESULTS_PATH.parent / "voice_summary.mp3"
+    audio_path.write_bytes(audio_bytes)
+    logger.info("Voice summary saved to %s", audio_path)
+
+    return Response(
+        content=audio_bytes,
+        media_type="audio/mpeg",
+        headers={"Content-Disposition": "inline; filename=market_briefing.mp3"},
+    )
