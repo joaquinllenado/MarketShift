@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react'
-import { Activity, TrendingUp, ShieldAlert, Bell, Zap, Megaphone, DollarSign, Handshake } from 'lucide-react'
+import { useState, useEffect, useRef, useCallback } from 'react'
+import { Activity, TrendingUp, ShieldAlert, Bell, Zap, Megaphone, DollarSign, Handshake, Loader2, Pause, Volume2 } from 'lucide-react'
 
 // ─── Severity by position ─────────────────────────────────────────────────────
 const severityByIdx = (i) => (i < 2 ? 'high' : i < 4 ? 'medium' : 'low')
@@ -101,6 +101,57 @@ function Empty({ label }) {
 // ─── Main dashboard ───────────────────────────────────────────────────────────
 export default function MarketShiftDashboard({ apiResult = null, apiError = null }) {
 
+  // Voice summary state
+  const [voiceState, setVoiceState] = useState('idle') // idle | loading | playing | paused | error
+  const [voiceError, setVoiceError] = useState(null)
+  const audioRef = useRef(null)
+  const blobUrlRef = useRef(null)
+
+  const handleVoiceSummary = useCallback(async () => {
+    if (voiceState === 'playing') {
+      audioRef.current?.pause()
+      setVoiceState('paused')
+      return
+    }
+    if (voiceState === 'paused') {
+      audioRef.current?.play()
+      setVoiceState('playing')
+      return
+    }
+
+    setVoiceState('loading')
+    setVoiceError(null)
+
+    try {
+      const res = await fetch('/api/pipeline/voice-summary', { method: 'POST' })
+      if (!res.ok) {
+        const body = await res.json().catch(() => ({}))
+        throw new Error(body.detail || `API error ${res.status}`)
+      }
+
+      const blob = await res.blob()
+      if (blobUrlRef.current) URL.revokeObjectURL(blobUrlRef.current)
+      const url = URL.createObjectURL(blob)
+      blobUrlRef.current = url
+
+      const audio = new Audio(url)
+      audioRef.current = audio
+      audio.addEventListener('ended', () => setVoiceState('idle'))
+      await audio.play()
+      setVoiceState('playing')
+    } catch (err) {
+      setVoiceError(err.message)
+      setVoiceState('error')
+    }
+  }, [voiceState])
+
+  useEffect(() => {
+    return () => {
+      audioRef.current?.pause()
+      if (blobUrlRef.current) URL.revokeObjectURL(blobUrlRef.current)
+    }
+  }, [])
+
   // Action steps with local done-state
   const [actions, setActions] = useState([])
 
@@ -165,15 +216,30 @@ export default function MarketShiftDashboard({ apiResult = null, apiError = null
               )}
             </div>
           </div>
-          <button
-            className="self-start sm:self-auto inline-flex items-center gap-2 text-white text-sm font-semibold px-5 py-2.5 rounded-2xl transition-colors cursor-pointer"
-            style={{ background: '#FF9E13', boxShadow: '0 2px 8px rgba(255,158,19,0.3)' }}
-            onMouseEnter={e => e.currentTarget.style.background='#ffb340'}
-            onMouseLeave={e => e.currentTarget.style.background='#FF9E13'}
-          >
-            <Zap className="w-4 h-4" />
-            Listen to Report
-          </button>
+          <div className="flex flex-col items-end gap-1">
+            <button
+              onClick={handleVoiceSummary}
+              disabled={voiceState === 'loading'}
+              className="self-start sm:self-auto inline-flex items-center gap-2 text-white text-sm font-semibold px-5 py-2.5 rounded-2xl transition-colors cursor-pointer disabled:opacity-60 disabled:cursor-wait"
+              style={{ background: '#FF9E13', boxShadow: '0 2px 8px rgba(255,158,19,0.3)' }}
+              onMouseEnter={e => { if (voiceState !== 'loading') e.currentTarget.style.background='#ffb340' }}
+              onMouseLeave={e => e.currentTarget.style.background='#FF9E13'}
+            >
+              {voiceState === 'loading' && <Loader2 className="w-4 h-4 animate-spin" />}
+              {voiceState === 'playing' && <Pause className="w-4 h-4" />}
+              {voiceState === 'paused' && <Volume2 className="w-4 h-4" />}
+              {(voiceState === 'idle' || voiceState === 'error') && <Zap className="w-4 h-4" />}
+              {voiceState === 'loading' ? 'Generating…' :
+               voiceState === 'playing' ? 'Pause' :
+               voiceState === 'paused' ? 'Resume' :
+               'Listen to Report'}
+            </button>
+            {voiceState === 'error' && voiceError && (
+              <span className="text-xs text-red-500 bg-red-50 border border-red-100 rounded-full px-3 py-0.5">
+                {voiceError}
+              </span>
+            )}
+          </div>
         </GlassCard>
 
         {/* ── ROW 2: PRODUCT ANNOUNCEMENTS + FUNDING ─────────────────────── */}
