@@ -19,7 +19,7 @@
 | Layer   | Stack |
 |--------|--------|
 | Frontend | React 19, Vite, Tailwind CSS v4 (JavaScript) |
-| Backend  | Python, FastAPI, Prefect (workflow orchestration) |
+| Backend  | Python, FastAPI |
 | Search   | [Exa](https://exa.ai/) (company/news search, scraping) |
 | LLM      | DeepSeek (V3/R1) via GMI Cloud — intake, analysis, narrative summary |
 | TTS      | ElevenLabs via GMI Cloud (voice summary) |
@@ -64,7 +64,6 @@ Frontend proxies `/api/*` to the backend (see `frontend/vite.config.js`).
     -H "Content-Type: application/json" \
     -d '{"url": "https://www.notion.so"}'
   ```
-- **GET** cached results: `GET http://localhost:8000/pipeline/results`
 - **POST** voice summary (uses latest pipeline results): `POST http://localhost:8000/pipeline/voice-summary` → returns MP3.
 
 ---
@@ -92,7 +91,7 @@ MarketShift/
 │   │   └── MarketShiftDashboard.jsx  # Signals, sentiment, competitors, actions
 │   └── vite.config.js        # API proxy /api → :8000
 ├── backend/
-│   ├── main.py               # FastAPI app, /research, /pipeline, /pipeline/voice-summary
+│   ├── main.py               # FastAPI app, /pipeline, /pipeline/voice-summary
 │   ├── agents/
 │   │   ├── orchestrator.py   # Pipeline: intake → sub_1 → sub_2 → analysis → sub_3
 │   │   ├── intake_agent.py   # URL → scrape → competitor discovery (Exa + LLM)
@@ -111,10 +110,7 @@ MarketShift/
 
 | Method | Path | Description |
 |--------|------|-------------|
-| GET | `/hello` | Health check |
-| POST | `/research` | Company search and/or URL scraping (query + optional `urls[]`) |
 | POST | `/pipeline` | Full pipeline: single product `url` → structured intelligence |
-| GET | `/pipeline/results` | Latest pipeline output (from `data/results.json`) |
 | POST | `/pipeline/voice-summary` | Generate MP3 briefing from latest pipeline results |
 
 ---

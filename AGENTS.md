@@ -3,9 +3,9 @@
 This file provides guidance to agents (i.e., ADAL) when working with code in this repository.
 
 ## Snapshot
-- **Project**: MarketShift — React frontend + FastAPI/Prefect backend
+- **Project**: MarketShift — React frontend + FastAPI backend
 - **Frontend**: React 19 + Vite + Tailwind CSS v4 (JavaScript)
-- **Backend**: Python + FastAPI + Prefect (workflow orchestration)
+- **Backend**: Python + FastAPI
 
 ---
 
@@ -33,6 +33,11 @@ cd backend && source venv/bin/activate && pip install -r requirements.txt
 ```
 
 ### Run both together (dev)
+```bash
+./start.sh          # macOS/Linux — starts both in one terminal
+.\start.ps1         # Windows PowerShell — opens both in separate windows
+```
+Or manually:
 1. Terminal 1: `cd backend && source venv/bin/activate && uvicorn main:app --reload`
 2. Terminal 2: `cd frontend && npm run dev`
 
@@ -40,9 +45,8 @@ Frontend proxies `/api/*` → `http://localhost:8000/*` (configured in `vite.con
 
 ### Critical gotchas
 - **Backend venv**: Always `source venv/bin/activate` before running Python commands.
-- **Proxy rewrite**: Frontend strips `/api` prefix — `fetch('/api/hello')` hits backend `/hello`.
+- **Proxy rewrite**: Frontend strips `/api` prefix — `fetch('/api/pipeline')` hits backend `/pipeline`.
 - **Tailwind v4**: Uses `@tailwindcss/vite` plugin (not PostCSS). CSS uses `@import "tailwindcss"` syntax.
-- **Prefect flows run synchronously** inside FastAPI endpoints (no async). For production, use background tasks or Prefect deployments.
 
 ---
 
@@ -52,18 +56,12 @@ Frontend proxies `/api/*` → `http://localhost:8000/*` (configured in `vite.con
 ```
 Browser → Vite dev server (:5173)
   → /api/* proxied to FastAPI (:8000) with /api prefix stripped
-    → FastAPI endpoint calls Prefect @flow
-      → Prefect @flow orchestrates @task(s) and returns result
+    → FastAPI endpoint calls agents.orchestrator.run_pipeline
     → JSON response back to browser
 ```
 
-### Prefect integration
-- `@flow` and `@task` decorators in `backend/main.py` are called directly from FastAPI route handlers.
-- Prefect tracks execution, creates run graphs, and handles task retries/failures.
-- Currently runs in **ephemeral mode** (no Prefect server). To enable the UI: `prefect server start` on port 4200.
-
 ### Frontend ↔ Backend contract
-- Frontend calls `/api/hello` → Backend serves `GET /hello` → Returns `{ "message": "..." }`
+- Frontend calls `/api/pipeline` (POST) and `/api/pipeline/voice-summary` (POST)
 - CORS is configured to allow `http://localhost:5173`.
 
 ---
@@ -75,7 +73,7 @@ Browser → Vite dev server (:5173)
 | Frontend app | `frontend/src/App.jsx` | Main React component |
 | Frontend config | `frontend/vite.config.js` | Vite + Tailwind + API proxy |
 | Frontend styles | `frontend/src/index.css` | Tailwind CSS import |
-| Backend API | `backend/main.py` | FastAPI app + Prefect flows |
+| Backend API | `backend/main.py` | FastAPI app + pipeline endpoints |
 | Backend deps | `backend/requirements.txt` | Python dependencies |
 | Backend venv | `backend/venv/` | Python virtual environment (not committed) |
 
@@ -83,11 +81,9 @@ Browser → Vite dev server (:5173)
 
 ## 4) Adding New Features
 
-### New API endpoint + Prefect flow
-1. Add `@task` function(s) in `backend/main.py` (or a new module)
-2. Add `@flow` function that orchestrates the tasks
-3. Add `@app.get` / `@app.post` route that calls the flow
-4. Call from frontend via `fetch('/api/<route>')`
+### New API endpoint
+1. Add `@app.get` / `@app.post` route in `backend/main.py` (or a new module)
+2. Call from frontend via `fetch('/api/<route>')`
 
 ### New frontend page/component
 1. Create component in `frontend/src/`
