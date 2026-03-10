@@ -1,6 +1,5 @@
 fastapi
 uvicorn
-prefect
 exa-py
 python-dotenv
 langchain
