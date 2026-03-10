@@ -245,7 +245,7 @@ export default function MarketShiftDashboard({ apiResult = null, apiError = null
         {/* ── ROW 2: PRODUCT ANNOUNCEMENTS + FUNDING ─────────────────────── */}
 
         {/* Product Announcements */}
-        <GlassCard className="col-span-12 md:col-span-6 flex flex-col gap-4 overflow-y-auto max-h-72">
+        <GlassCard className="col-span-12 md:col-span-6 flex flex-col gap-4 overflow-y-auto">
           <div className="flex items-center gap-2">
             <Megaphone className="w-4 h-4 text-indigo-500" />
             <h2 className="font-serif text-sm font-semibold text-slate-800">Product Announcements</h2>
@@ -258,7 +258,7 @@ export default function MarketShiftDashboard({ apiResult = null, apiError = null
         </GlassCard>
 
         {/* Funding */}
-        <GlassCard className="col-span-12 md:col-span-6 flex flex-col gap-4 overflow-y-auto max-h-72">
+        <GlassCard className="col-span-12 md:col-span-6 flex flex-col gap-4 overflow-y-auto">
           <div className="flex items-center gap-2">
             <DollarSign className="w-4 h-4" style={{color:'#FF9E13'}} />
             <h2 className="font-serif text-sm font-semibold text-slate-800">Funding</h2>
@@ -273,7 +273,7 @@ export default function MarketShiftDashboard({ apiResult = null, apiError = null
         {/* ── ROW 3: PARTNERSHIPS + MARKET SIGNALS ───────────────────────── */}
 
         {/* Partnerships */}
-        <GlassCard className="col-span-12 md:col-span-6 flex flex-col gap-4 overflow-y-auto max-h-72">
+        <GlassCard className="col-span-12 md:col-span-6 flex flex-col gap-4 overflow-y-auto">
           <div className="flex items-center gap-2">
             <Handshake className="w-4 h-4 text-violet-500" />
             <h2 className="font-serif text-sm font-semibold text-slate-800">Partnerships</h2>
@@ -286,7 +286,7 @@ export default function MarketShiftDashboard({ apiResult = null, apiError = null
         </GlassCard>
 
         {/* Market Signals */}
-        <GlassCard className="col-span-12 md:col-span-6 flex flex-col gap-4">
+        <GlassCard className="col-span-12 md:col-span-6 flex flex-col gap-4 overflow-y-auto">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <Bell className="w-4 h-4 text-indigo-500" />
