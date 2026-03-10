@@ -1,52 +1,26 @@
 """
-Sub-Agent 2: Aggregation + Persistence
+Sub-Agent 2: Aggregation
 
 Receives the gathered data from Sub-Agent 1, deduplicates results
-across all three sources by URL, and appends the full run record
-to backend/data/results.json.
+across all three sources by URL.
 
 Returns the same dict with two extra keys:
   - aggregated   → deduplicated list of all results with a "source" tag
-  - persisted_at → UTC ISO timestamp of when the record was written
+  - persisted_at → UTC ISO timestamp
 
-LLM hook: pass aggregated results through a summarisation chain
-(e.g. ChatOpenAI | StrOutputParser) before persisting to produce
-a concise summary field alongside the raw data.
+Storage is not persisted here; the caller will add DB persistence later.
 """
 
-import json
 import logging
 from datetime import datetime, timezone
-from pathlib import Path
 
 from langchain_core.runnables import RunnableLambda
 
 logger = logging.getLogger(__name__)
 
-DATA_FILE = Path(__file__).parent.parent / "data" / "results.json"
-
 
 def _aggregate_and_persist(inputs: dict) -> dict:
     logger.info("[sub_agent_2] Aggregating and deduplicating results …")
-    DATA_FILE.parent.mkdir(parents=True, exist_ok=True)
-
-    existing: list = []
-    if DATA_FILE.exists():
-        try:
-            loaded = json.loads(DATA_FILE.read_text())
-            # File may be a single dict (from main.py pipeline overwrite) or a list of records
-            if isinstance(loaded, dict):
-                existing = [loaded]
-            elif isinstance(loaded, list):
-                existing = [x for x in loaded if isinstance(x, dict)]
-            else:
-                existing = []
-        except (json.JSONDecodeError, ValueError):
-            logger.warning("[sub_agent_2] Existing %s was corrupt — starting fresh", DATA_FILE)
-            existing = []
-    # Defensive: ensure we always have a list (e.g. if loaded was malformed or list had non-dict items)
-    if not isinstance(existing, list):
-        existing = [existing] if isinstance(existing, dict) else []
 
     raw_counts = {k: len(inputs.get(k, [])) for k in ("web", "product_hunt", "news")}
     logger.info("[sub_agent_2] Raw item counts: %s", raw_counts)
@@ -62,20 +36,8 @@ def _aggregate_and_persist(inputs: dict) -> dict:
 
     timestamp = datetime.now(timezone.utc).isoformat()
 
-    record = {
-        "query": inputs["query"],
-        "timestamp": timestamp,
-        "web": inputs.get("web", []),
-        "product_hunt": inputs.get("product_hunt", []),
-        "news": inputs.get("news", []),
-        "aggregated": aggregated,
-    }
-
-    existing.append(record)
-    DATA_FILE.write_text(json.dumps(existing, indent=2))
-
-    logger.info("[sub_agent_2] %d unique items aggregated (from %d raw), persisted to %s",
-                len(aggregated), sum(raw_counts.values()), DATA_FILE)
+    logger.info("[sub_agent_2] %d unique items aggregated (from %d raw)",
+                len(aggregated), sum(raw_counts.values()))
 
     return {**inputs, "aggregated": aggregated, "persisted_at": timestamp}
 

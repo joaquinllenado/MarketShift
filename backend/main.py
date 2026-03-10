@@ -1,8 +1,5 @@
-import json
 import logging
-import os
 from datetime import datetime, timezone
-from pathlib import Path
 
 from dotenv import load_dotenv
 from fastapi import FastAPI, HTTPException, Request
@@ -44,11 +41,11 @@ async def log_requests(request: Request, call_next):
 
 # --- FastAPI endpoints ---
 
-RESULTS_PATH = Path(__file__).parent / "data" / "results.json"
 
 @app.get("/health")
 def health():
     return {"status": "ok"}
+
 
 @app.post("/pipeline", response_model=PipelineResponse)
 def pipeline(request: PipelineRequest):
@@ -60,35 +57,24 @@ def pipeline(request: PipelineRequest):
     from agents.orchestrator import run_pipeline
     result = run_pipeline(url)
 
-    RESULTS_PATH.parent.mkdir(parents=True, exist_ok=True)
     payload = result if isinstance(result, dict) else result.model_dump()
     payload["persisted_at"] = datetime.now(timezone.utc).isoformat()
-    RESULTS_PATH.write_text(json.dumps(payload, indent=2), encoding="utf-8")
 
-    logger.info("Pipeline complete — results persisted to %s", RESULTS_PATH)
+    logger.info("Pipeline complete")
     return payload
 
 
 @app.post("/pipeline/voice-summary")
-def voice_summary():
-    if not RESULTS_PATH.exists():
-        logger.warning("Voice summary requested but no pipeline results exist")
-        raise HTTPException(status_code=404, detail="No pipeline results found. Run the pipeline first.")
-
-    logger.info("Generating voice summary from %s", RESULTS_PATH)
-    raw = json.loads(RESULTS_PATH.read_text(encoding="utf-8"))
-    pipeline_data = raw[-1] if isinstance(raw, list) else raw
+def voice_summary(pipeline_data: PipelineResponse):
+    """Generate voice summary from pipeline result. Client sends the pipeline response in the POST body."""
+    logger.info("Generating voice summary from request body")
 
     from agents.voice_summary import generate_voice_summary
     try:
-        audio_bytes = generate_voice_summary(pipeline_data)
+        audio_bytes = generate_voice_summary(pipeline_data.model_dump())
     except Exception as exc:
         logger.exception("Voice summary generation failed")
         raise HTTPException(status_code=502, detail=f"Voice summary generation failed: {exc}")
-
-    audio_path = RESULTS_PATH.parent / "voice_summary.mp3"
-    audio_path.write_bytes(audio_bytes)
-    logger.info("Voice summary saved to %s", audio_path)
 
     return Response(
         content=audio_bytes,
