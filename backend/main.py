@@ -46,6 +46,9 @@ async def log_requests(request: Request, call_next):
 
 RESULTS_PATH = Path(__file__).parent / "data" / "results.json"
 
+@app.get("/health")
+def health():
+    return {"status": "ok"}
 
 @app.post("/pipeline", response_model=PipelineResponse)
 def pipeline(request: PipelineRequest):
