@@ -157,7 +157,7 @@ export default function LandingPage() {
       {/* ── SECTION 2: Agent Timeline ─────────────────────────────────── */}
       {appState !== 'user-query' && (
         <div ref={timelineRef}>
-          <AgentTimeline onComplete={() => setTimelineDone(true)} />
+          <AgentTimeline onComplete={() => setTimelineDone(true)} apiDone={apiResult !== null} />
         </div>
       )}
 
