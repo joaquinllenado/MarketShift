@@ -123,7 +123,11 @@ export default function MarketShiftDashboard({ apiResult = null, apiError = null
     setVoiceError(null)
 
     try {
-      const res = await fetch('/api/pipeline/voice-summary', { method: 'POST' })
+      const res = await fetch('/api/pipeline/voice-summary', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(apiResult),
+      })
       if (!res.ok) {
         const body = await res.json().catch(() => ({}))
         throw new Error(body.detail || `API error ${res.status}`)

@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/:path*",
+      "destination": "https://market-shift-a054q4wiz-joaquinllenados-projects.vercel.app/:path*?x-vercel-protection-bypass=jTetU3tqigGqwkIlt8H4qG8Xm5yBWIlG"
+    }
+  ]
+}

@@ -1,222 +1,222 @@
 {
-  "query": "Apache Airflow, Dagster Labs, MLflow, Kedro, Kubeflow workflow orchestration and AI infrastructure platforms",
-  "product_name": "Prefect",
-  "product_summary": "Prefect is a workflow orchestration and AI infrastructure platform that turns any Python function into a workflow with full observability.",
+  "query": "Office Ai, Envix Team, Bench Work, Sylix, ClickUp AI-powered productivity and collaboration tools",
+  "product_name": "Notion",
+  "product_summary": "An AI-powered all-in-one workspace for notes, tasks, wikis, and databases.",
   "competitors": [
     {
-      "name": "Apache Airflow",
-      "url": "https://www.airflow.apache.org"
+      "name": "Office Ai",
+      "url": "https://www.nas.io/office-ai"
     },
     {
-      "name": "Dagster Labs",
-      "url": "https://www.dagsterlabs.com"
+      "name": "Envix Team",
+      "url": "https://www.envix.com"
     },
     {
-      "name": "MLflow",
-      "url": "https://www.mlflow.org"
+      "name": "Bench Work",
+      "url": "https://www.spicy-peridot-38f.notion.site"
     },
     {
-      "name": "Kedro",
-      "url": "https://www.kedro.org"
+      "name": "Sylix",
+      "url": "https://www.sylix.com"
     },
     {
-      "name": "Kubeflow",
-      "url": "https://www.kubeflow.org"
+      "name": "ClickUp",
+      "url": "https://www.clickup.com"
     }
   ],
   "product_announcements": [
     {
-      "company": "Apache Airflow",
-      "abbreviation": "AA",
-      "title": "Apache Airflow 3.0.0 has been released",
-      "url": "https://airflow.apache.org/blog/airflow-three-point-oh-is-here/",
-      "logo": "https://www.google.com/s2/favicons?domain=airflow.apache.org&sz=64"
-    },
-    {
-      "company": "Dagster Labs",
-      "abbreviation": "DL",
-      "title": "Dagster+ is a category-redefining data orchestrator",
-      "url": "https://www.producthunt.com/p/dagster-cloud/dagster",
+      "company": "ClickUp",
+      "abbreviation": "CU",
+      "title": "Launched Brain MAX, an AI app integrating knowledge and talk-to-text features",
+      "url": "https://www.producthunt.com/products/clickup/launches/brain-max-by-clickup",
       "logo": "https://www.google.com/s2/favicons?domain=www.producthunt.com&sz=64"
     },
     {
-      "company": "MLflow",
-      "abbreviation": "ML",
-      "title": "MLflow 2.21.0 released with significant features",
-      "url": "https://mlflow.org/releases/2.21.0",
-      "logo": "https://www.google.com/s2/favicons?domain=mlflow.org&sz=64"
-    },
-    {
-      "company": "Dagster Labs",
-      "abbreviation": "DL",
-      "title": "Dagster is a unified platform for AI & data pipelines",
-      "url": "https://dagster.io/",
-      "logo": "https://www.google.com/s2/favicons?domain=dagster.io&sz=64"
-    },
-    {
-      "company": "Apache Airflow",
-      "abbreviation": "AA",
-      "title": "Astronomer offers managed Apache Airflow with one-click DAG deployment",
-      "url": "https://www.producthunt.com/p/astronomer/apache-airflow-on-astronomer",
+      "company": "ClickUp",
+      "abbreviation": "CU",
+      "title": "Released ClickUp 3.0 with enhanced performance and reliability",
+      "url": "https://www.producthunt.com/products/clickup",
       "logo": "https://www.google.com/s2/favicons?domain=www.producthunt.com&sz=64"
+    },
+    {
+      "company": "Microsoft",
+      "abbreviation": "MS",
+      "title": "Introduced AI Agent Cowork for Microsoft 365 to handle complex tasks",
+      "url": "https://forklog.com/en/microsoft-introduces-ai-agent-cowork-for-microsoft-365/",
+      "logo": "https://www.google.com/s2/favicons?domain=forklog.com&sz=64"
+    },
+    {
+      "company": "Microsoft",
+      "abbreviation": "MS",
+      "title": "Launched Microsoft 365 E7 suite with Copilot AI and Agent 365",
+      "url": "https://itbrief.com.au/story/microsoft-unveils-365-e7-suite-agent-365-for-ai-control",
+      "logo": "https://www.google.com/s2/favicons?domain=itbrief.com.au&sz=64"
+    },
+    {
+      "company": "Envizom",
+      "abbreviation": "EZ",
+      "title": "Evolved into a full-scale Environmental Intelligence Platform",
+      "url": "https://www.prnewswire.com/in/news-releases/envizom-evolves-into-a-full-scale-environmental-intelligence-platform-for-industries-and-cities-302599826.html",
+      "logo": "https://www.google.com/s2/favicons?domain=www.prnewswire.com&sz=64"
     }
   ],
   "funding": [
     {
-      "company": "Dagster Labs",
-      "abbreviation": "DL",
-      "title": "raised Series B",
-      "amount": "Undisclosed",
-      "url": "https://dagster.io/",
-      "logo": "https://www.google.com/s2/favicons?domain=dagster.io&sz=64"
-    },
-    {
-      "company": "MLflow",
-      "abbreviation": "ML",
-      "title": "raised funding",
-      "amount": "Undisclosed",
-      "url": "https://mlflow.org/",
-      "logo": "https://www.google.com/s2/favicons?domain=mlflow.org&sz=64"
-    },
-    {
-      "company": "Apache Airflow",
-      "abbreviation": "AA",
-      "title": "raised funding",
-      "amount": "Undisclosed",
-      "url": "https://airflow.apache.org/",
-      "logo": "https://www.google.com/s2/favicons?domain=airflow.apache.org&sz=64"
-    },
-    {
-      "company": "Dagster Labs",
-      "abbreviation": "DL",
+      "company": "Qatalog",
+      "abbreviation": "QA",
       "title": "raised Series A",
-      "amount": "Undisclosed",
-      "url": "https://www.linkedin.com/company/dagsterlabs",
-      "logo": "https://www.google.com/s2/favicons?domain=www.linkedin.com&sz=64"
+      "amount": "$26M",
+      "url": "https://clickup.com/",
+      "logo": "https://www.google.com/s2/favicons?domain=clickup.com&sz=64"
     },
     {
-      "company": "Kubeflow",
-      "abbreviation": "KF",
+      "company": "We.Team",
+      "abbreviation": "WT",
+      "title": "raised Convertible Note",
+      "amount": "$5.5M",
+      "url": "https://we.team/",
+      "logo": "https://www.google.com/s2/favicons?domain=we.team&sz=64"
+    },
+    {
+      "company": "ClickUp",
+      "abbreviation": "CU",
+      "title": "raised funding",
+      "amount": "$29.5M",
+      "url": "https://clickup.com/",
+      "logo": "https://www.google.com/s2/favicons?domain=clickup.com&sz=64"
+    },
+    {
+      "company": "Bench",
+      "abbreviation": "BE",
       "title": "raised funding",
       "amount": "Undisclosed",
-      "url": "https://www.kubeflow.org/",
-      "logo": "https://www.google.com/s2/favicons?domain=www.kubeflow.org&sz=64"
+      "url": "https://benchtalentcloud.com/",
+      "logo": "https://www.google.com/s2/favicons?domain=benchtalentcloud.com&sz=64"
+    },
+    {
+      "company": "Envizom",
+      "abbreviation": "EZ",
+      "title": "raised funding",
+      "amount": "Undisclosed",
+      "url": "https://www.prnewswire.com/in/news-releases/envizom-evolves-into-a-full-scale-environmental-intelligence-platform-for-industries-and-cities-302599826.html",
+      "logo": "https://www.google.com/s2/favicons?domain=www.prnewswire.com&sz=64"
     }
   ],
   "partnerships": [
     {
-      "company": "Apache Airflow",
-      "abbreviation": "AA",
-      "title": "announced partnership with Astronomer",
-      "url": "https://www.producthunt.com/p/astronomer/apache-airflow-on-astronomer",
-      "logo": "https://www.google.com/s2/favicons?domain=www.producthunt.com&sz=64"
+      "company": "Microsoft",
+      "abbreviation": "MS",
+      "title": "announced partnership with Anthropic for Copilot Cowork",
+      "url": "https://forklog.com/en/microsoft-introduces-ai-agent-cowork-for-microsoft-365/",
+      "logo": "https://www.google.com/s2/favicons?domain=forklog.com&sz=64"
     },
     {
-      "company": "Dagster Labs",
-      "abbreviation": "DL",
-      "title": "announced partnership with GitHub",
-      "url": "https://github.com/dagster-io/dagster",
-      "logo": "https://www.google.com/s2/favicons?domain=github.com&sz=64"
+      "company": "ClickUp",
+      "abbreviation": "CU",
+      "title": "partnered with Qatalog",
+      "url": "https://clickup.com/",
+      "logo": "https://www.google.com/s2/favicons?domain=clickup.com&sz=64"
     },
     {
-      "company": "MLflow",
-      "abbreviation": "ML",
-      "title": "announced partnership with Databricks",
-      "url": "https://mlflow.org/",
-      "logo": "https://www.google.com/s2/favicons?domain=mlflow.org&sz=64"
+      "company": "Envix",
+      "abbreviation": "EX",
+      "title": "partnered with Trello for project management",
+      "url": "https://envix.co.uk/wordpress-support/",
+      "logo": "https://www.google.com/s2/favicons?domain=envix.co.uk&sz=64"
     },
     {
-      "company": "Kubeflow",
-      "abbreviation": "KF",
-      "title": "announced partnership with Google Cloud",
-      "url": "https://www.kubeflow.org/",
-      "logo": "https://www.google.com/s2/favicons?domain=www.kubeflow.org&sz=64"
+      "company": "Bench",
+      "abbreviation": "BE",
+      "title": "partnered with enterprise clients for talent deployment",
+      "url": "https://benchtalentcloud.com/",
+      "logo": "https://www.google.com/s2/favicons?domain=benchtalentcloud.com&sz=64"
     },
     {
-      "company": "Apache Airflow",
-      "abbreviation": "AA",
-      "title": "announced partnership with Astronomer",
-      "url": "https://airflow.apache.org/",
-      "logo": "https://www.google.com/s2/favicons?domain=airflow.apache.org&sz=64"
+      "company": "We.Team",
+      "abbreviation": "WT",
+      "title": "partnered with Slack for integration",
+      "url": "https://we.team/",
+      "logo": "https://www.google.com/s2/favicons?domain=we.team&sz=64"
     }
   ],
   "market_signals": [
     {
-      "company": "Dagster Labs",
-      "abbreviation": "DL",
-      "title": "expanding to enterprise market",
-      "description": "Dagster is building a unified platform for AI & data pipelines.",
-      "url": "https://dagster.io/",
-      "logo": "https://www.google.com/s2/favicons?domain=dagster.io&sz=64"
+      "company": "Microsoft",
+      "abbreviation": "MS",
+      "title": "expanding AI capabilities in enterprise productivity",
+      "description": "Launched new AI tools and higher-priced Office tier to attract enterprise users.",
+      "url": "https://www.cnbc.com/2026/03/09/microsoft-office-365-e7-copilot-ai.html?__source=twitter%7Ctech&taid=69aec7abf9dd4700013ec9d3",
+      "logo": "https://www.google.com/s2/favicons?domain=www.cnbc.com&sz=64"
     },
     {
-      "company": "Apache Airflow",
-      "abbreviation": "AA",
-      "title": "expanding to enterprise market",
-      "description": "Apache Airflow is becoming the go-to tool for data engineers and MLOps teams.",
-      "url": "https://www.astronomer.io/airflow/",
-      "logo": "https://www.google.com/s2/favicons?domain=www.astronomer.io&sz=64"
-    },
-    {
-      "company": "MLflow",
-      "abbreviation": "ML",
-      "title": "expanding to enterprise market",
-      "description": "MLflow is streamlining machine learning development with new features.",
-      "url": "https://mlflow.org/",
-      "logo": "https://www.google.com/s2/favicons?domain=mlflow.org&sz=64"
-    },
-    {
-      "company": "Dagster Labs",
-      "abbreviation": "DL",
-      "title": "expanding to enterprise market",
-      "description": "Dagster+ is a category-redefining data orchestrator.",
-      "url": "https://www.producthunt.com/p/dagster-cloud/dagster",
+      "company": "ClickUp",
+      "abbreviation": "CU",
+      "title": "expanding AI-powered productivity tools",
+      "description": "Introduced Brain MAX and other AI features to enhance productivity.",
+      "url": "https://www.producthunt.com/products/clickup/launches/brain-max-by-clickup",
       "logo": "https://www.google.com/s2/favicons?domain=www.producthunt.com&sz=64"
     },
     {
-      "company": "Apache Airflow",
-      "abbreviation": "AA",
-      "title": "expanding to enterprise market",
-      "description": "Apache Airflow 3.0.0 has been released with new features.",
-      "url": "https://airflow.apache.org/blog/airflow-three-point-oh-is-here/",
-      "logo": "https://www.google.com/s2/favicons?domain=airflow.apache.org&sz=64"
+      "company": "Envizom",
+      "abbreviation": "EZ",
+      "title": "expanding to global environmental intelligence",
+      "description": "Evolved into a full-scale SaaS platform supporting third-party data integration.",
+      "url": "https://www.prnewswire.com/in/news-releases/envizom-evolves-into-a-full-scale-environmental-intelligence-platform-for-industries-and-cities-302599826.html",
+      "logo": "https://www.google.com/s2/favicons?domain=www.prnewswire.com&sz=64"
+    },
+    {
+      "company": "Bench",
+      "abbreviation": "BE",
+      "title": "expanding to enterprise talent management",
+      "description": "Launched AI-powered talent cloud for enterprise teams.",
+      "url": "https://benchtalentcloud.com/",
+      "logo": "https://www.google.com/s2/favicons?domain=benchtalentcloud.com&sz=64"
+    },
+    {
+      "company": "We.Team",
+      "abbreviation": "WT",
+      "title": "expanding remote collaboration tools",
+      "description": "Enhanced tools for secure communication and file sharing for remote teams.",
+      "url": "https://we.team/",
+      "logo": "https://www.google.com/s2/favicons?domain=we.team&sz=64"
     }
   ],
   "market_opportunities": [
-    "Growing demand for unified platforms for AI & data pipelines.",
-    "Increasing adoption of open-source workflow orchestration tools.",
-    "Expansion of managed services for workflow orchestration platforms.",
-    "Rising need for integrated lineage and observability in data pipelines.",
-    "Growing market for cloud-native orchestrators in the development lifecycle."
+    "Growing demand for AI-powered productivity tools in enterprise environments.",
+    "Increased need for integrated environmental intelligence platforms in industries and cities.",
+    "Expansion opportunities in remote collaboration tools as hybrid work models persist.",
+    "Potential for AI agents to automate complex, multi-step tasks in productivity software.",
+    "Rising interest in talent management solutions that leverage AI for workforce optimization."
   ],
   "competitive_risks": [
-    "Strong competition from established players like Apache Airflow and MLflow.",
-    "Rapid innovation by competitors in features and integrations.",
-    "High barrier to entry due to the dominance of existing platforms.",
-    "Potential fragmentation in the market with multiple competing standards.",
-    "Risk of being overshadowed by larger players with more resources."
+    "High competition from established players like Microsoft in the AI productivity space.",
+    "Rapid technological advancements may require continuous innovation to stay relevant.",
+    "Dependence on third-party integrations could pose reliability and security challenges.",
+    "Market saturation in productivity tools may make differentiation difficult.",
+    "Regulatory and compliance risks in handling sensitive environmental and workforce data."
   ],
   "action_steps": [
     {
       "step": 1,
-      "title": "Enhance Prefect's integration with popular AI and data tools."
+      "title": "Enhance AI capabilities to match or exceed competitors like Microsoft and ClickUp."
     },
     {
       "step": 2,
-      "title": "Develop a managed service offering for Prefect to compete with Astronomer."
+      "title": "Explore partnerships with AI model developers to integrate advanced features."
     },
     {
       "step": 3,
-      "title": "Focus on improving developer experience and observability features."
+      "title": "Focus on differentiating factors such as unique integrations or superior user experience."
     },
     {
       "step": 4,
-      "title": "Expand marketing efforts to highlight Prefect's unique value proposition."
+      "title": "Invest in security and compliance to address enterprise concerns."
     },
     {
       "step": 5,
-      "title": "Explore partnerships with major cloud providers to increase adoption."
+      "title": "Expand market reach by targeting underserved verticals or regions."
     }
   ],
-  "persisted_at": "2026-03-08T02:12:40.473205+00:00"
+  "persisted_at": "2026-03-10T20:08:49.504615+00:00"
 }
