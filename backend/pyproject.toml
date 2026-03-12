@@ -1,0 +1,19 @@
+[project]
+name = "marketshift-backend"
+version = "0.1.0"
+description = "MarketShift API backend"
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi",
+    "uvicorn",
+    "exa-py",
+    "python-dotenv",
+    "langchain",
+    "langchain-core",
+    "langchain-openai",
+    "openai",
+    "requests",
+]
+
+[project.scripts]
+app = "main:app"
