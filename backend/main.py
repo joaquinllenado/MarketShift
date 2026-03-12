@@ -17,7 +17,7 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-app = FastAPI(title="MarketShift API")
+app = FastAPI(title="MarketShift API", version="1.0.1")
 
 app.add_middleware(
     CORSMiddleware,
