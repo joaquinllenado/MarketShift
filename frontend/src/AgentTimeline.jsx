@@ -26,26 +26,27 @@ function Checkmark() {
   )
 }
 
-export default function AgentTimeline({ onComplete }) {
+export default function AgentTimeline({ onComplete, apiDone = false }) {
   const [stepIdx, setStepIdx] = useState(0)
   const [complete, setComplete] = useState(false)
 
   useEffect(() => {
     if (complete) return
 
-    // Hold on the last step, then mark complete and call back
-    if (stepIdx >= STEPS.length - 1) {
-      const t = setTimeout(() => {
-        setComplete(true)
-        setTimeout(() => onComplete?.(), 900)
-      }, STEP_DURATION)
-      return () => clearTimeout(t)
-    }
+    // On "Almost done" — wait for apiDone before completing
+    if (stepIdx >= STEPS.length - 1) return
 
     // Advance to next step
     const t = setTimeout(() => setStepIdx((s) => s + 1), STEP_DURATION)
     return () => clearTimeout(t)
-  }, [stepIdx, complete, onComplete])
+  }, [stepIdx, complete])
+
+  // Complete only once API response is received
+  useEffect(() => {
+    if (complete || stepIdx < STEPS.length - 1 || !apiDone) return
+    setComplete(true)
+    setTimeout(() => onComplete?.(), 900)
+  }, [apiDone, stepIdx, complete, onComplete])
 
   return (
     <div className="relative min-h-screen flex items-center justify-center px-4 py-20 overflow-hidden">
