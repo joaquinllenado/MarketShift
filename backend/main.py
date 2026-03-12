@@ -21,7 +21,7 @@ app = FastAPI(title="MarketShift API", version="1.0.1")
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173", "http://127.0.0.1:5173", "https://market-shift-ngh2.vercel.app", "https://marketshift.vercel.app/"],
+    allow_origins=["http://localhost:5173", "http://127.0.0.1:5173", "https://market-shift-ngh2.vercel.app", "https://marketshift.vercel.app"],
     allow_methods=["*"],
     allow_headers=["*"],
 )
